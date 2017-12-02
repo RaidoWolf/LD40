@@ -22,6 +22,8 @@ list (APPEND SOURCES
     # game code
     src/class/Log/Log.hpp
     src/class/Log/Log.cpp
+    src/class/Window/Window.hpp
+    src/class/Window/Window.cpp
     src/enum/LogLevel/LogLevel.hpp
 
     # entry point

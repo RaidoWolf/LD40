@@ -3,31 +3,33 @@
 #include <SFML/Graphics.hpp>
 #include "class/Log/Log.hpp"
 #include "enum/LogLevel/LogLevel.hpp"
+#include "class/Window/Window.hpp"
 #include "config.h"
 
 int main (int argc, const char* argv[]) {
+
+    Log::bindCallbacks();
 
     Log::setFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");
 
     // create game window
     Log::verbose("Creating window.");
-    sf::RenderWindow window(
-        sf::VideoMode(800, 600),
-        "LD40",
-        sf::Style::Close | sf::Style::Resize | sf::Style::Titlebar
-    );
+    Window::setWidth(800);
+    Window::setHeight(600);
+    Window::setTitle("Ludum Dare 40");
+    Window::open();
 
     Log::verbose("Starting game loop.");
-    while (window.isOpen()) {
+    while (Window::isOpen()) {
         sf::Event windowEvent;
-        while (window.pollEvent(windowEvent)) {
+        while (Window::pollEvent(windowEvent)) {
             if (windowEvent.type == sf::Event::Closed) {
                 Log::verbose("Closing window (close button pressed).");
-                window.close();
+                Window::close();
             }
         }
-        window.display();
+        Window::display();
     }
 
     Log::verbose("Exiting. Thanks for playing!");
