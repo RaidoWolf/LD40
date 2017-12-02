@@ -12,8 +12,27 @@ MIT (see LICENSE)
 
 ## Description
 
-Still in the planning/design phase. I will update this when more details are
-available.
+The player drives a boat out of a harbor on a fishing run. The goal is to
+collect the maximum number of fish possible. There will be a time limit, and by
+then end of the time, you must be back in port or your boat will be destroyed.
+
+On the water, you will be able to pick up fish items, which will increase your
+score, but also the weight of your boat. While the boat will not sink from sheer
+weight alone, the higher your weight, the slower the boat will be to accelerate,
+the slower it's top speed will be, and the slower it will be to turn and brake.
+
+Because of these things, the increased load of fish on board the boat will make
+it more difficult to safely avoid the variety of obstacles that you will
+encounter while at sea, and the more difficult it may be to reach the harbor in
+time to deliver your cargo at all.
+
+The world will be procedurally generated, and there will be only one level. Thus
+it is an arcade-style game tracking high scores based on the player's arrival
+in the harbor.
+
+A variety of different game modes MAY be implemented, providing different time
+limits and a different mix of obstacles, but that will be on a "time-allowing"
+basis. This may get implemented post-game-jam.
 
 ## Development
 
