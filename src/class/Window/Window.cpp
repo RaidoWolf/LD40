@@ -71,6 +71,17 @@ void Window::display () {
 
 }
 
+void Window::clear () {
+
+    if (!Window::exists()) {
+        Log::warning("Cannot clear window because it is not open");
+        return;
+    }
+
+    m_context->clear();
+
+}
+
 bool Window::pollEvent (sf::Event& windowEvent) {
 
     return m_context->pollEvent(windowEvent);

@@ -2,9 +2,6 @@
 #define H_CLASS_WINDOW
 
 #include <string>
-#include <sstream>
-#include <exception>
-#include <stdexcept>
 #include <SFML/Graphics.hpp>
 #include "../Log/Log.hpp"
 
@@ -26,6 +23,7 @@ public:
     static void close ();
 
     static void display ();
+    static void clear ();
     static bool pollEvent (sf::Event&);
 
     static int getWidth ();
