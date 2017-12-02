@@ -16,17 +16,22 @@ configure_file (
 )
 include_directories ("${PROJECT_BINARY_DIR}")
 
-# executable output
-set (EXECUTABLE_NAME "LD40")
-add_executable (${EXECUTABLE_NAME} src/main.cpp)
-
 # sources list
 list (APPEND SOURCES
+
+    # game code
+    src/class/Log/Log.hpp
+    src/class/Log/Log.cpp
+    src/enum/LogLevel/LogLevel.hpp
 
     # entry point
     src/main.cpp
 
 )
+
+# executable output
+set (EXECUTABLE_NAME "LD40")
+add_executable (${EXECUTABLE_NAME} ${SOURCES})
 
 # cmake modules
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
