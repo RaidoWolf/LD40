@@ -45,10 +45,6 @@ void GameLoop::run () {
 
                 Log::verbose("Render Loop!");
 
-                if (Window::exists()) {
-                    Window::clear();
-                }
-
                 sf::Event windowEvent;
                 while (Window::pollEvent(windowEvent)) {
 
@@ -145,6 +141,7 @@ void GameLoop::run () {
 
                 double deltaTime = m_updateLoopClock.getElapsedTime().asSeconds();
                 render(deltaTime);
+                Window::clear();
                 Window::display();
 
             }
