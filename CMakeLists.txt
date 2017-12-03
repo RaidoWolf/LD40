@@ -31,6 +31,8 @@ list (APPEND SOURCES
     src/class/GameStateManager/GameStateManager.cpp
     src/class/Keybinding/Keybinding.hpp
     src/class/Keybinding/Keybinding.cpp
+    src/class/LoadingState/LoadingState.hpp
+    src/class/LoadingState/LoadingState.cpp
     src/class/Log/Log.hpp
     src/class/Log/Log.cpp
     src/class/Window/Window.hpp

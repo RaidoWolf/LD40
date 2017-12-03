@@ -15,7 +15,7 @@ public:
 
     // constructor and destructor
     GameState () {};
-    virtual ~GameState () = 0;
+    virtual ~GameState () {};
 
     // state management event callbacks
     virtual void onActivate () {}

@@ -6,6 +6,7 @@
 #include "class/Window/Window.hpp"
 #include "class/GameStateManager/GameStateManager.hpp"
 #include "class/GameLoop/GameLoop.hpp"
+#include "class/LoadingState/LoadingState.hpp"
 #include "config.h"
 
 int main (int argc, const char* argv[]) {
@@ -14,6 +15,8 @@ int main (int argc, const char* argv[]) {
 
     Log::setFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");
+
+    GameStateManager::pushState(new LoadingState);
 
     // create game window
     Log::verbose("Creating window.");
