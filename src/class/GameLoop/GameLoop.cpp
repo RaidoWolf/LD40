@@ -43,6 +43,8 @@ void GameLoop::run () {
 
             if (m_isRunning) {
 
+                Log::verbose("Render Loop!");
+
                 if (Window::exists()) {
                     Window::clear();
                 }
@@ -143,6 +145,7 @@ void GameLoop::run () {
 
                 double deltaTime = m_updateLoopClock.getElapsedTime().asSeconds();
                 render(deltaTime);
+                Window::display();
 
             }
 
@@ -200,6 +203,8 @@ void GameLoop::update (
         sf::Time startTime = updateLoopClock.getElapsedTime();
 
         if (isRunning) {
+
+            Log::verbose("Update loop!");
 
             int ticks = static_cast<int>(deltaTime * updateTickRate);
             for (int i = 0; i < ticks; ++i) {
