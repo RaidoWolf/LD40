@@ -54,5 +54,23 @@ and found them difficult to work around in the limited time frame available.
 This time I'd like to give myself a chance to detect those design flaws before
 overcommiting to the problematic concept at all.
 
+The underlying game engine, at a layer of abstraction above SFML, is based on
+the early code from my Territory game engine (and game), which I manually ported
+to SFML from GLFW and then built improvements on top of that, since as of
+writing, the Territory engine is far from complete. Many of these changes are
+likely to get sent back upstream to improve Territory.
+
+The game engine itself utilizes a pushdown automata game state system supporting
+layer transparency individually for the render, update, and input code. The game
+loop utilizes the original thread as the rendering/input loop, which prevents
+segfaults in the rendering and event handling code, while update code is run in
+a separate update thread, which has the potential to provide slightly higher
+processing throughput on multi-core systems (although it does introduce a host
+of nuisances that would make it generally not worth the effort in a simpler game
+like this one, but since Territory already had the feature, I felt it was easier
+to simply leave it in place). This multi-threading allows us to easily run a
+fixed-time-step update loop, while also running a variable time-step rendering
+loop.
+
 To my fellow Ludum Dare participants, good luck, and I'm looking forward to
 playing your games soon!
