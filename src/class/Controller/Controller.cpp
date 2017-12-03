@@ -77,14 +77,18 @@ void Controller::onUnfocus () {
 void Controller::onMouseButtonPress (int buttons, int x, int y) {
 
     Log::verbose("Mouse button pressed.");
-    // TODO: this will process the mousebindings
+    for (int i = 0; i < m_mouseButtonPressCallbacks.size(); ++i) {
+        m_mouseButtonPressCallbacks[i](buttons, x, y);
+    }
 
 }
 
 void Controller::onMouseButtonRelease (int buttons, int x, int y) {
 
     Log::verbose("Mouse button released.");
-    // TODO: this will process the mousebindings
+    for (int i = 0; i < m_mouseButtonReleaseCallbacks.size(); ++i) {
+        m_mouseButtonReleaseCallbacks[i](buttons, x, y);
+    }
 
 }
 
@@ -199,6 +203,30 @@ void Controller::addUnfocusCallback (UnfocusCallback unfocusCallback) {
 void Controller::clearUnfocusCallbacks () {
 
     m_unfocusCallbacks = std::vector<UnfocusCallback>();
+
+}
+
+void Controller::addMouseButtonPressCallback (MouseButtonPressCallback mouseButtonPressCallback) {
+
+    m_mouseButtonPressCallbacks.push_back(mouseButtonPressCallback);
+
+}
+
+void Controller::clearMouseButtonPressCallbacks () {
+
+    m_mouseButtonPressCallbacks = std::vector<MouseButtonPressCallback>();
+
+}
+
+void Controller::addMouseButtonReleaseCallback (MouseButtonReleaseCallback mouseButtonReleaseCallback) {
+
+    m_mouseButtonReleaseCallbacks.push_back(mouseButtonReleaseCallback);
+
+}
+
+void Controller::clearMouseButtonReleaseCallbacks () {
+
+    m_mouseButtonReleaseCallbacks = std::vector<MouseButtonReleaseCallback>();
 
 }
 

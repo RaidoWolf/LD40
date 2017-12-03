@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <functional>
-#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 class Keybinding {
 

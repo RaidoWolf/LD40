@@ -40,14 +40,11 @@ public:
     void onResize (int, int);
 
     std::vector<Keybinding> getKeybindings ();
-    // std::vector<MouseBinding> getMousebindings ();
+    // std::vector<LoopKeybinding> getLoopKeybindings ();
 
     void setKeybindings (std::vector<Keybinding>);
     void addKeybinding (Keybinding);
     void clearKeybindings ();
-    // void setMousebindings (std::vector<Mousebinding>);
-    // void addMousebinding (Mousebinding);
-    // void clearMousebindings ();
     void addTextCallback (TextCallback);
     void clearTextCallbacks ();
     void addCursorCallback (CursorCallback);
@@ -60,6 +57,10 @@ public:
     void clearFocusCallbacks ();
     void addUnfocusCallback (UnfocusCallback);
     void clearUnfocusCallbacks();
+    void addMouseButtonPressCallback (MouseButtonPressCallback);
+    void clearMouseButtonPressCallbacks ();
+    void addMouseButtonReleaseCallback (MouseButtonReleaseCallback);
+    void clearMouseButtonReleaseCallbacks ();
     void addScrollCallback (ScrollCallback);
     void clearScrollCallbacks ();
     void addResizeCallback (ResizeCallback);
@@ -68,7 +69,7 @@ public:
 private:
 
     std::vector<Keybinding> m_keybindings;
-    // std::vector<MouseBinding> m_mousebindings ();
+    // std::vector<LoopKeybinding> m_loopKeybindings;
 
     std::vector<TextCallback> m_textCallbacks;
     std::vector<CursorCallback> m_cursorCallbacks;
@@ -76,6 +77,8 @@ private:
     std::vector<CursorOutCallback> m_cursorOutCallbacks;
     std::vector<FocusCallback> m_focusCallbacks;
     std::vector<UnfocusCallback> m_unfocusCallbacks;
+    std::vector<MouseButtonPressCallback> m_mouseButtonPressCallbacks;
+    std::vector<MouseButtonReleaseCallback> m_mouseButtonReleaseCallbacks;
     std::vector<ScrollCallback> m_scrollCallbacks;
     std::vector<ResizeCallback> m_resizeCallbacks;
 
