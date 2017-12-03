@@ -43,8 +43,6 @@ void GameLoop::run () {
 
             if (m_isRunning) {
 
-                Log::verbose("Render Loop!");
-
                 sf::Event windowEvent;
                 while (Window::pollEvent(windowEvent)) {
 
@@ -200,8 +198,6 @@ void GameLoop::update (
         sf::Time startTime = updateLoopClock.getElapsedTime();
 
         if (isRunning) {
-
-            Log::verbose("Update loop!");
 
             int ticks = static_cast<int>(deltaTime * updateTickRate);
             for (int i = 0; i < ticks; ++i) {
