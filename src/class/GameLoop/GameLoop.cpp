@@ -53,8 +53,12 @@ void GameLoop::run () {
                     switch (windowEvent.type) {
 
                         case sf::Event::Closed:
+                            // TODO: onExit in GameStateManager so developer has a chance to clean up before the window is killed
                             Window::close();
-                            break;
+                            m_windowOpen = false;
+                            m_isRunning = false;
+                            m_updateThread.join();
+                            return;
 
                         case sf::Event::Resized:
                             GameStateManager::resizeCallback(

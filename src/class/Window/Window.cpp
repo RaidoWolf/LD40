@@ -48,11 +48,11 @@ void Window::open () {
 
 void Window::close () {
 
-    if (!Window::exists()) {
+    if (!Window::isOpen()) {
         Log::warning("Window cannot be closed because it is not open.");
-        return;
     }
 
+    Log::verbose("Closing window.");
     m_context->close();
     if (m_context) {
         delete m_context;
