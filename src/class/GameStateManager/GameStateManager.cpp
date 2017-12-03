@@ -136,6 +136,14 @@ void GameStateManager::update () {
 
 }
 
+void GameStateManager::loopInput () {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().loopCheck();
+    }
+
+}
+
 void GameStateManager::keyPressCallback (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
 
     for (int i = 0; i < m_statesLiveInput.size(); ++i) {

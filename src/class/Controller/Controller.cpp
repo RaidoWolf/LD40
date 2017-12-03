@@ -2,6 +2,14 @@
 
 Controller::Controller () {}
 
+void Controller::loopCheck () {
+
+    if (m_mouseIsDown) {
+        onLoopMouseButton(m_lastButtons, m_lastMouseX, m_lastMouseY);
+    }
+
+}
+
 void Controller::onKeyPress (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
 
     Log::verbose("Key pressed.");
@@ -32,6 +40,8 @@ void Controller::onText (sf::Uint32 character) {
 void Controller::onCursor (double xPos, double yPos) {
 
     Log::verbose("Cursor moved.");
+    m_lastMouseX = xPos;
+    m_lastMouseY = yPos;
     for (int i = 0; i < m_cursorCallbacks.size(); ++i) {
         m_cursorCallbacks[i](xPos, yPos);
     }
@@ -77,6 +87,10 @@ void Controller::onUnfocus () {
 void Controller::onMouseButtonPress (int buttons, int x, int y) {
 
     Log::verbose("Mouse button pressed.");
+    m_lastButtons = buttons;
+    m_lastMouseX = x;
+    m_lastMouseY = y;
+    m_mouseIsDown = true;
     for (int i = 0; i < m_mouseButtonPressCallbacks.size(); ++i) {
         m_mouseButtonPressCallbacks[i](buttons, x, y);
     }
@@ -86,8 +100,18 @@ void Controller::onMouseButtonPress (int buttons, int x, int y) {
 void Controller::onMouseButtonRelease (int buttons, int x, int y) {
 
     Log::verbose("Mouse button released.");
+    m_mouseIsDown = false;
     for (int i = 0; i < m_mouseButtonReleaseCallbacks.size(); ++i) {
         m_mouseButtonReleaseCallbacks[i](buttons, x, y);
+    }
+
+}
+
+void Controller::onLoopMouseButton (int buttons, int x, int y) {
+
+    Log::verbose("Mouse button held.");
+    for (int i = 0; i < m_loopMouseButtonCallbacks.size(); ++i) {
+        m_loopMouseButtonCallbacks[i](buttons, x, y);
     }
 
 }
@@ -227,6 +251,18 @@ void Controller::addMouseButtonReleaseCallback (MouseButtonReleaseCallback mouse
 void Controller::clearMouseButtonReleaseCallbacks () {
 
     m_mouseButtonReleaseCallbacks = std::vector<MouseButtonReleaseCallback>();
+
+}
+
+void Controller::addLoopMouseButtonCallback (LoopMouseButtonCallback loopMouseButtonCallback) {
+
+    m_loopMouseButtonCallbacks.push_back(loopMouseButtonCallback);
+
+}
+
+void Controller::clearLoopMouseButtonCallbacks () {
+
+    m_loopMouseButtonCallbacks = std::vector<LoopMouseButtonCallback>();
 
 }
 

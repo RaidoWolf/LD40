@@ -43,6 +43,8 @@ void GameLoop::run () {
 
             if (m_isRunning) {
 
+                GameStateManager::loopInput();
+
                 sf::Event windowEvent;
                 while (Window::pollEvent(windowEvent)) {
 

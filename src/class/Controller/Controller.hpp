@@ -21,10 +21,13 @@ public:
     typedef std::function < void () > UnfocusCallback;
     typedef std::function < void (int, int, int) > MouseButtonPressCallback;
     typedef std::function < void (int, int, int) > MouseButtonReleaseCallback;
+    typedef std::function < void (int, int, int) > LoopMouseButtonCallback;
     typedef std::function < void (double) > ScrollCallback;
     typedef std::function < void (int, int) > ResizeCallback;
 
     Controller ();
+
+    void loopCheck ();
 
     void onKeyPress (sf::Keyboard::Key, bool, bool, bool);
     void onKeyRelease (sf::Keyboard::Key, bool, bool, bool);
@@ -36,6 +39,7 @@ public:
     void onUnfocus ();
     void onMouseButtonPress (int, int, int);
     void onMouseButtonRelease (int, int, int);
+    void onLoopMouseButton (int, int, int);
     void onScroll (double);
     void onResize (int, int);
 
@@ -61,6 +65,8 @@ public:
     void clearMouseButtonPressCallbacks ();
     void addMouseButtonReleaseCallback (MouseButtonReleaseCallback);
     void clearMouseButtonReleaseCallbacks ();
+    void addLoopMouseButtonCallback (LoopMouseButtonCallback);
+    void clearLoopMouseButtonCallbacks ();
     void addScrollCallback (ScrollCallback);
     void clearScrollCallbacks ();
     void addResizeCallback (ResizeCallback);
@@ -79,8 +85,14 @@ private:
     std::vector<UnfocusCallback> m_unfocusCallbacks;
     std::vector<MouseButtonPressCallback> m_mouseButtonPressCallbacks;
     std::vector<MouseButtonReleaseCallback> m_mouseButtonReleaseCallbacks;
+    std::vector<LoopMouseButtonCallback> m_loopMouseButtonCallbacks;
     std::vector<ScrollCallback> m_scrollCallbacks;
     std::vector<ResizeCallback> m_resizeCallbacks;
+
+    bool m_mouseIsDown = false;
+    int m_lastButtons = 0;
+    int m_lastMouseX = 0;
+    int m_lastMouseY = 0;
 
 };
 

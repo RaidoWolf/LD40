@@ -25,6 +25,8 @@ public:
 
     static void update ();
 
+    static void loopInput ();
+
     static void keyPressCallback (sf::Keyboard::Key, bool, bool, bool);
     static void keyReleaseCallback (sf::Keyboard::Key, bool, bool, bool);
     static void textCallback (sf::Uint32);
