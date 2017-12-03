@@ -9,11 +9,18 @@ class Window {
 
 public:
 
-    typedef void (* KeyCallback) (sf::RenderWindow*, int, int, int, int);
-    typedef void (* CursorCallback) (sf::RenderWindow*, double, double);
-    typedef void (* CursorInOutCallback) (sf::RenderWindow*, int);
-    typedef void (* MouseButtonCallback) (sf::RenderWindow*, int, int, int);
-    typedef void (* ScrollCallback) (sf::RenderWindow*, double, double);
+    typedef void (* KeyPressCallback) (int, bool, bool, bool);
+    typedef void (* KeyReleaseCallback) (int, bool, bool, bool);
+    typedef void (* TextCallback) (std::string);
+    typedef void (* CursorCallback) (double, double);
+    typedef void (* CursorInCallback) ();
+    typedef void (* CursorOutCallback) ();
+    typedef void (* FocusCallback) ();
+    typedef void (* UnfocusCallback) ();
+    typedef void (* MouseButtonPressedCallback) (int, int, int);
+    typedef void (* MouseButtonReleasedCallback) (int, int, int);
+    typedef void (* ScrollCallback) (double);
+    typedef void (* ResizeCallback) (int, int);
 
     static sf::RenderWindow* getContext ();
 

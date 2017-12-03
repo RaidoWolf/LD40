@@ -10,6 +10,7 @@ project (LD40)
 set (LD40_VERSION_MAJOR 0)
 set (LD40_VERSION_MINOR 0)
 set (CMAKE_CXX_STANDARD 14)
+set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/config.h.in"
     "${PROJECT_BINARY_DIR}/src/config.h"
@@ -20,6 +21,16 @@ include_directories ("${PROJECT_BINARY_DIR}")
 list (APPEND SOURCES
 
     # game code
+    src/class/Controller/Controller.hpp
+    src/class/Controller/Controller.cpp
+    src/class/GameLoop/GameLoop.hpp
+    src/class/GameLoop/GameLoop.cpp
+    src/class/GameState/GameState.hpp
+    src/class/GameState/GameState.cpp
+    src/class/GameStateManager/GameStateManager.hpp
+    src/class/GameStateManager/GameStateManager.cpp
+    src/class/Keybinding/Keybinding.hpp
+    src/class/Keybinding/Keybinding.cpp
     src/class/Log/Log.hpp
     src/class/Log/Log.cpp
     src/class/Window/Window.hpp

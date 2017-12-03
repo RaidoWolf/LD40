@@ -48,8 +48,94 @@ void GameLoop::run () {
                 }
 
                 sf::Event windowEvent;
-                Window::pollEvent(windowEvent);
-                input(windowEvent);
+                while (Window::pollEvent(windowEvent)) {
+
+                    switch (windowEvent.type) {
+
+                        case sf::Event::Closed:
+                            Window::close();
+                            break;
+
+                        case sf::Event::Resized:
+                            GameStateManager::resizeCallback(
+                                windowEvent.size.width,
+                                windowEvent.size.height
+                            );
+                            break;
+
+                        case sf::Event::LostFocus:
+                            GameStateManager::focusCallback();
+                            break;
+
+                        case sf::Event::GainedFocus:
+                            GameStateManager::unfocusCallback();
+                            break;
+
+                        case sf::Event::TextEntered:
+                            GameStateManager::textCallback(windowEvent.text.unicode);
+                            break;
+
+                        case sf::Event::KeyPressed:
+                            GameStateManager::keyPressCallback(
+                                windowEvent.key.code,
+                                windowEvent.key.alt,
+                                windowEvent.key.control,
+                                windowEvent.key.shift
+                            );
+                            break;
+
+                        case sf::Event::KeyReleased:
+                            GameStateManager::keyReleaseCallback(
+                                windowEvent.key.code,
+                                windowEvent.key.alt,
+                                windowEvent.key.control,
+                                windowEvent.key.shift
+                            );
+                            break;
+
+                        case sf::Event::MouseWheelMoved:
+                            GameStateManager::scrollCallback(
+                                windowEvent.mouseWheel.delta
+                            );
+                            break;
+
+                        case sf::Event::MouseButtonPressed:
+                            GameStateManager::mouseButtonPressCallback(
+                                windowEvent.mouseButton.button,
+                                windowEvent.mouseButton.x,
+                                windowEvent.mouseButton.y
+                            );
+                            break;
+
+                        case sf::Event::MouseButtonReleased:
+                            GameStateManager::mouseButtonReleaseCallback(
+                                windowEvent.mouseButton.button,
+                                windowEvent.mouseButton.x,
+                                windowEvent.mouseButton.y
+                            );
+                            break;
+
+                        case sf::Event::MouseMoved:
+                            GameStateManager::cursorCallback(
+                                windowEvent.mouseMove.x,
+                                windowEvent.mouseMove.y
+                            );
+                            break;
+
+                        case sf::Event::MouseEntered:
+                            GameStateManager::cursorInCallback();
+                            break;
+
+                        case sf::Event::MouseLeft:
+                            GameStateManager::cursorOutCallback();
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                }
 
                 double deltaTime = m_updateLoopClock.getElapsedTime().asSeconds();
                 render(deltaTime);
@@ -121,7 +207,7 @@ void GameLoop::update (
         sf::Time elapsedTime = updateLoopClock.getElapsedTime();
 
         if (elapsedTime.asSeconds() < updateSeconds) {
-            std::this_thread::sleep_for(std::chono::duration<double>(updateSeconds - elapsedTime.asSeconds()));
+            std::this_thread::sleep_for(std::chrono::duration<double>(updateSeconds - elapsedTime.asSeconds()));
         }
 
         deltaTime = updateLoopClock.getElapsedTime().asSeconds() - startTime.asSeconds();

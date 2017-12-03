@@ -4,6 +4,8 @@
 #include "class/Log/Log.hpp"
 #include "enum/LogLevel/LogLevel.hpp"
 #include "class/Window/Window.hpp"
+#include "class/GameStateManager/GameStateManager.hpp"
+#include "class/GameLoop/GameLoop.hpp"
 #include "config.h"
 
 int main (int argc, const char* argv[]) {
@@ -21,16 +23,9 @@ int main (int argc, const char* argv[]) {
     Window::open();
 
     Log::verbose("Starting game loop.");
-    while (Window::isOpen()) {
-        sf::Event windowEvent;
-        while (Window::pollEvent(windowEvent)) {
-            if (windowEvent.type == sf::Event::Closed) {
-                Log::verbose("Closing window (close button pressed).");
-                Window::close();
-            }
-        }
-        Window::display();
-    }
+    GameLoop::setRenderFrameRate(60);
+    GameLoop::setUpdateTickRate(60);
+    GameLoop::run();
 
     Log::verbose("Exiting. Thanks for playing!");
     exit(EXIT_SUCCESS);

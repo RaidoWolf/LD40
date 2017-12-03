@@ -131,15 +131,31 @@ void GameStateManager::render (double deltaTime) {
 void GameStateManager::update () {
 
     for (int i = 0; i < m_statesLiveUpdate.size(); ++i) {
-        m_statesLiveUpdate[i]->render();
+        m_statesLiveUpdate[i]->update();
     }
 
 }
 
-void GameStateManager::keyCallback (int key, int scanCode, int action, int mod) {
+void GameStateManager::keyPressCallback (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
 
     for (int i = 0; i < m_statesLiveInput.size(); ++i) {
-        m_statesLiveInput[i]->getController().onKey(action, mod, key, scanCode);
+        m_statesLiveInput[i]->getController().onKeyPress(key, alt, control, shift);
+    }
+
+}
+
+void GameStateManager::keyReleaseCallback (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onKeyRelease(key, alt, control, shift);
+    }
+
+}
+
+void GameStateManager::textCallback (sf::Uint32 character) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onText(character);
     }
 
 }
@@ -152,32 +168,66 @@ void GameStateManager::cursorCallback (double xPos, double yPos) {
 
 }
 
-void GameStateManager::cursorInOutCallback (int in) {
+void GameStateManager::cursorInCallback () {
 
-    if (in) {
-        for (int i = 0; i < m_statesLiveInput.size(); ++i) {
-            m_statesLiveInput[i]->getController().onCursorIn();
-        }
-    } else {
-        for (int i = 0; i < m_statesLiveInput.size(); ++i) {
-            m_statesLiveInput[i]->getController().onCursorOut();
-        }
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onCursorIn();
     }
 
 }
 
-void GameStateManager::mouseButtonCallback (int button, int action, int mod) {
+void GameStateManager::cursorOutCallback () {
 
     for (int i = 0; i < m_statesLiveInput.size(); ++i) {
-        m_statesLiveInput[i]->getController().onMouseButton(action, mod, button);
+        m_statesLiveInput[i]->getController().onCursorOut();
     }
 
 }
 
-void GameStateManager::scrollCallback (double xOffset, double yOffset) {
+void GameStateManager::focusCallback () {
 
     for (int i = 0; i < m_statesLiveInput.size(); ++i) {
-        m_statesLiveInput[i]->getController().onScroll(xOffset, yOffset);
+        m_statesLiveInput[i]->getController().onFocus();
+    }
+
+}
+
+void GameStateManager::unfocusCallback () {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onUnfocus();
+    }
+
+}
+
+void GameStateManager::mouseButtonPressCallback (int buttons, int x, int y) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onMouseButtonPress(buttons, x, y);
+    }
+
+}
+
+void GameStateManager::mouseButtonReleaseCallback (int buttons, int x, int y) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onMouseButtonRelease(buttons, x, y);
+    }
+
+}
+
+void GameStateManager::scrollCallback (double offset) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onScroll(offset);
+    }
+
+}
+
+void GameStateManager::resizeCallback (int width, int height) {
+
+    for (int i = 0; i < m_statesLiveInput.size(); ++i) {
+        m_statesLiveInput[i]->getController().onResize(width, height);
     }
 
 }

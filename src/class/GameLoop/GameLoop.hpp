@@ -5,14 +5,13 @@
 #include <chrono>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "../GameStateManager/GameStateManager.hpp"
 #include "../Window/Window.hpp"
 #include "../Log/Log.hpp"
 
 class GameLoop {
 
 public:
-
-private:
 
     static void setRenderFrameRate (int);
     static void setUpdateTickRate (int);
@@ -28,7 +27,6 @@ private:
     static void update (sf::Clock&, int&, double&, bool&, bool&, bool&);
 
     static void render (double);
-    static void input (sf::Event);
 
     static int m_renderFrameRate;
     static int m_updateTickRate;

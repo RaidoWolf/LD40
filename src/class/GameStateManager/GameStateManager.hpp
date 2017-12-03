@@ -1,5 +1,5 @@
 #ifndef H_CLASS_GAMESTATEMANAGER
-#ifndef H_CLASS_GAMESTATEMANAGER
+#define H_CLASS_GAMESTATEMANAGER
 
 #include <vector>
 #include <memory>
@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
+#include "../GameState/GameState.hpp"
 #include "../Window/Window.hpp"
 #include "../Log/Log.hpp"
 
@@ -24,11 +25,18 @@ public:
 
     static void update ();
 
-    static void keyCallback (int, int, int, int = -1);
+    static void keyPressCallback (sf::Keyboard::Key, bool, bool, bool);
+    static void keyReleaseCallback (sf::Keyboard::Key, bool, bool, bool);
+    static void textCallback (sf::Uint32);
     static void cursorCallback (double, double);
-    static void cursorInOutCallback (int);
-    static void mouseButtonCallback (int, int, int);
-    static void scrollCallback (double, double);
+    static void cursorInCallback ();
+    static void cursorOutCallback ();
+    static void focusCallback ();
+    static void unfocusCallback ();
+    static void mouseButtonPressCallback (int, int, int);
+    static void mouseButtonReleaseCallback (int, int, int);
+    static void scrollCallback (double);
+    static void resizeCallback (int, int);
 
 private:
 
