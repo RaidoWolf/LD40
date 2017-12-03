@@ -5,12 +5,20 @@ if (NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
 endif ()
 
+# notify of the build type in use
+message (STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+
 # project
 project (LD40)
 set (LD40_VERSION_MAJOR 0)
 set (LD40_VERSION_MINOR 0)
 set (CMAKE_CXX_STANDARD 14)
-set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
+set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread -Wall -Wextra")
+set (CMAKE_CXX_FLAGS_DEBUG "-g")
+set (CMAKE_CXX_FLAGS_RELEASE "-O3")
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    set (CMAKE_VERBOSE_MAKEFILE ON)
+endif ()
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/config.h.in"
     "${PROJECT_BINARY_DIR}/src/config.h"
