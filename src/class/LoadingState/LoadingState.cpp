@@ -1,6 +1,12 @@
 #include "LoadingState.hpp"
 
-LoadingState::LoadingState () {}
+LoadingState::LoadingState () {
+
+    m_controller.addLoopKeybinding(
+        LoopKeybinding([](){}, sf::Keyboard::Key::LShift)
+    );
+
+}
 
 LoadingState::~LoadingState () {}
 

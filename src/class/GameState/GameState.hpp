@@ -34,7 +34,7 @@ public:
     void setController (Controller&);
     void clearController ();
 
-private:
+protected:
 
     Controller m_controller;
 

@@ -6,13 +6,12 @@
 #include <SFML/Graphics.hpp>
 #include "../Log/Log.hpp"
 #include "../Keybinding/Keybinding.hpp"
+#include "../LoopKeybinding/LoopKeybinding.hpp"
 
 class Controller {
 
 public:
 
-    typedef std::function < void (sf::Keyboard::Key, bool, bool, bool) > KeyPressCallback;
-    typedef std::function < void (sf::Keyboard::Key, bool, bool, bool) > KeyReleaseCallback;
     typedef std::function < void (sf::Uint32) > TextCallback;
     typedef std::function < void (double, double) > CursorCallback;
     typedef std::function < void () > CursorInCallback;
@@ -31,6 +30,7 @@ public:
 
     void onKeyPress (sf::Keyboard::Key, bool, bool, bool);
     void onKeyRelease (sf::Keyboard::Key, bool, bool, bool);
+    void onLoopKey (const std::vector<sf::Keyboard::Key>&);
     void onText (sf::Uint32);
     void onCursor (double, double);
     void onCursorIn ();
@@ -44,11 +44,14 @@ public:
     void onResize (int, int);
 
     std::vector<Keybinding> getKeybindings ();
-    // std::vector<LoopKeybinding> getLoopKeybindings ();
+    std::vector<LoopKeybinding> getLoopKeybindings ();
 
     void setKeybindings (std::vector<Keybinding>);
     void addKeybinding (Keybinding);
     void clearKeybindings ();
+    void setLoopKeybindings (std::vector<LoopKeybinding>);
+    void addLoopKeybinding (LoopKeybinding);
+    void clearLoopKeybindings ();
     void addTextCallback (TextCallback);
     void clearTextCallbacks ();
     void addCursorCallback (CursorCallback);
@@ -75,7 +78,8 @@ public:
 private:
 
     std::vector<Keybinding> m_keybindings;
-    // std::vector<LoopKeybinding> m_loopKeybindings;
+    std::vector<LoopKeybinding> m_loopKeybindings;
+    std::vector<sf::Keyboard::Key> m_keysToLoop;
 
     std::vector<TextCallback> m_textCallbacks;
     std::vector<CursorCallback> m_cursorCallbacks;

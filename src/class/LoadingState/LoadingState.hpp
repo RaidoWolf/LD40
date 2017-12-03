@@ -2,6 +2,7 @@
 #define H_CLASS_LOADINGSTATE
 
 #include "../GameState/GameState.hpp"
+#include "../LoopKeybinding/LoopKeybinding.hpp"
 #include "../Log/Log.hpp"
 
 class LoadingState : public GameState {

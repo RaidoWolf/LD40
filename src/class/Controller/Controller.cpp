@@ -8,6 +8,17 @@ void Controller::loopCheck () {
         onLoopMouseButton(m_lastButtons, m_lastMouseX, m_lastMouseY);
     }
 
+    std::vector<sf::Keyboard::Key> down;
+    for (int i = 0; i < m_keysToLoop.size(); ++i) {
+        if (sf::Keyboard::isKeyPressed(m_keysToLoop[i])) {
+            down.push_back(m_keysToLoop[i]);
+        }
+    }
+
+    if (down.size() > 0) {
+        onLoopKey(down);
+    }
+
 }
 
 void Controller::onKeyPress (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
@@ -24,6 +35,15 @@ void Controller::onKeyRelease (sf::Keyboard::Key key, bool alt, bool control, bo
     Log::verbose("Key released.");
     for (int i = 0; i < m_keybindings.size(); ++i) {
         m_keybindings[i].process(false, key, alt, control, shift);
+    }
+
+}
+
+void Controller::onLoopKey (const std::vector<sf::Keyboard::Key>& keys) {
+
+    Log::verbose("Key held.");
+    for (int i = 0; i < m_loopKeybindings.size(); ++i) {
+        m_loopKeybindings[i].process(keys);
     }
 
 }
@@ -155,6 +175,44 @@ void Controller::addKeybinding (Keybinding keybinding) {
 void Controller::clearKeybindings () {
 
     m_keybindings = std::vector<Keybinding>();
+
+}
+
+void Controller::setLoopKeybindings (std::vector<LoopKeybinding> loopKeybindings) {
+
+    clearLoopKeybindings();
+
+    for (int i = 0; i < loopKeybindings.size(); ++i) {
+        addLoopKeybinding(loopKeybindings[i]);
+    }
+
+}
+
+void Controller::addLoopKeybinding (LoopKeybinding loopKeybinding) {
+
+    m_loopKeybindings.push_back(loopKeybinding);
+
+    for (int i = 0; i < loopKeybinding.m_keys.size(); ++i) {
+        bool insert = true;
+        for (int j = 0; j < m_keysToLoop.size(); ++j) {
+            if (loopKeybinding.m_keys[i] == m_keysToLoop[j]) {
+                insert = false;
+                break;
+            }
+        }
+        if (insert) {
+            m_keysToLoop.push_back(loopKeybinding.m_keys[i]);
+        } else {
+            insert = true;
+        }
+    }
+
+}
+
+void Controller::clearLoopKeybindings () {
+
+    m_loopKeybindings = std::vector<LoopKeybinding>();
+    m_keysToLoop = std::vector<sf::Keyboard::Key>();
 
 }
 
