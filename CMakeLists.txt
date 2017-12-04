@@ -46,6 +46,8 @@ list (APPEND SOURCES
     src/class/Log/Log.cpp
     src/class/LoopKeybinding/LoopKeybinding.hpp
     src/class/LoopKeybinding/LoopKeybinding.cpp
+    src/class/ProgressBar/ProgressBar.hpp
+    src/class/ProgressBar/ProgressBar.cpp
     src/class/Window/Window.hpp
     src/class/Window/Window.cpp
     src/enum/LogLevel/LogLevel.hpp

@@ -2,12 +2,17 @@
 
 LoadingState::LoadingState () {
 
-    m_controller.addLoopKeybinding(
-        LoopKeybinding([](){}, sf::Keyboard::Key::LShift)
-    );
-
     m_clearWindow = true;
     m_clearColor = sf::Color(255, 255, 255, 255);
+
+    m_progressBar.setWidth(500.0);
+    m_progressBar.setHeight(25.0);
+    m_progressBar.setPadding(2.5);
+    m_progressBar.setOriginToCenter();
+    m_progressBar.setPositionX(400.0);
+    m_progressBar.setPositionY(300.0);
+    m_progressBar.setBackgroundColor(sf::Color(0, 0, 0, 255));
+    m_progressBar.setForegroundColor(sf::Color(255, 255, 255, 255));
 
 }
 
@@ -37,6 +42,14 @@ void LoadingState::onAscend () {}
 
 void LoadingState::onDescend () {}
 
-void LoadingState::render (double deltaTime) {}
+void LoadingState::render (double deltaTime) {
 
-void LoadingState::update () {}
+    m_progressBar.render();
+
+}
+
+void LoadingState::update () {
+
+    m_progressBar.incrementFill(0.0001);
+
+}

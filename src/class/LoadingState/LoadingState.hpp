@@ -4,6 +4,7 @@
 #include "../GameState/GameState.hpp"
 #include "../LoopKeybinding/LoopKeybinding.hpp"
 #include "../AssetStore/AssetStore.hpp"
+#include "../ProgressBar/ProgressBar.hpp"
 #include "../Log/Log.hpp"
 
 class LoadingState : public GameState {
@@ -26,6 +27,10 @@ public:
 
     void render (double);
     void update ();
+
+private:
+
+    ProgressBar m_progressBar;
 
 };
 

@@ -30,6 +30,10 @@ public:
     static void close ();
 
     static void display ();
+    static void draw (
+        const sf::Drawable& drawable,
+        const sf::RenderStates& states = sf::RenderStates::Default
+    );
     static void clear ();
     static void clear (const sf::Color);
     static bool pollEvent (sf::Event&);

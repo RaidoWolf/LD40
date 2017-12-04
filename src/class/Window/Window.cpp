@@ -71,6 +71,12 @@ void Window::display () {
 
 }
 
+void Window::draw (const sf::Drawable& drawable, const sf::RenderStates& states) {
+
+    m_context->draw(drawable, states);
+
+}
+
 void Window::clear () {
 
     if (!Window::exists()) {
