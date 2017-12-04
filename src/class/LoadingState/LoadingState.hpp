@@ -31,6 +31,7 @@ public:
 private:
 
     ProgressBar m_progressBar;
+    sf::Text m_loadingText;
 
 };
 

@@ -40,6 +40,26 @@ sf::Sound* AssetStore::getSound (std::string key) {
 
 }
 
+bool AssetStore::fontExists (std::string key) {
+
+    if (m_fonts.find(key) == m_fonts.end()) {
+        return false;
+    } else {
+        return true;
+    }
+
+}
+
+sf::Font* AssetStore::getFont (std::string key) {
+
+    if (!fontExists(key)) {
+        return nullptr;
+    }
+
+    return m_fonts[key];
+
+}
+
 bool AssetStore::registerImage (std::string key, sf::Image* image) {
 
     if (imageExists(key)) {
@@ -84,5 +104,28 @@ void AssetStore::deleteSound (std::string key) {
 
 }
 
+bool AssetStore::registerFont (std::string key, sf::Font* font) {
+
+    if (fontExists(key)) {
+        return false;
+    }
+
+    m_fonts.insert(std::pair<std::string, sf::Font*>(key, font));
+    return true;
+
+}
+
+void AssetStore::deleteFont (std::string key) {
+
+    if (!fontExists(key)) {
+        return;
+    }
+
+    delete m_fonts[key];
+    m_fonts.erase(key);
+
+}
+
 std::map<std::string, sf::Image*> AssetStore::m_images;
 std::map<std::string, sf::Sound*> AssetStore::m_sounds;
+std::map<std::string, sf::Font*> AssetStore::m_fonts;
