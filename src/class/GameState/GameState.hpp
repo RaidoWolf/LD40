@@ -40,7 +40,7 @@ protected:
 
     Controller m_controller;
     bool m_clearWindow = false;
-    sf::Color m_clearColor = sf::Color(0, 0, 0, 1);
+    sf::Color m_clearColor = sf::Color(0, 0, 0, 255);
 
 };
 
