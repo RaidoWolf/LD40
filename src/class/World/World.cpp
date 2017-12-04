@@ -22,7 +22,7 @@ World::~World () {}
 
 void World::generateTerrain () {
 
-    FastNoise fn(8675309);
+    FastNoise fn(static_cast<int>(std::time(nullptr)));
     fn.SetNoiseType(FastNoise::NoiseType::CubicFractal);
 
     float* heightMap = new float[1048576];

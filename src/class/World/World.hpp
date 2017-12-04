@@ -1,7 +1,7 @@
 #ifndef H_CLASS_WORLD
 #define H_CLASS_WORLD
 
-#include <sstream>
+#include <cstdlib>
 #include <SFML/Graphics.hpp>
 #include "../../lib/FastNoise/FastNoise.h"
 #include "../Window/Window.hpp"
