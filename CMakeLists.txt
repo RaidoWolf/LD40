@@ -50,6 +50,8 @@ list (APPEND SOURCES
     src/class/LoopKeybinding/LoopKeybinding.cpp
     src/class/MenuState/MenuState.hpp
     src/class/MenuState/MenuState.cpp
+    src/class/PlayingState/PlayingState.hpp
+    src/class/PlayingState/PlayingState.cpp
     src/class/ProgressBar/ProgressBar.hpp
     src/class/ProgressBar/ProgressBar.cpp
     src/class/Window/Window.hpp

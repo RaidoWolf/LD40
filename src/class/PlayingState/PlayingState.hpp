@@ -1,0 +1,34 @@
+#ifndef H_CLASS_PLAYINGSTATE
+#define H_CLASS_PLAYINGSTATE
+
+#include <SFML/Graphics.hpp>
+#include "../GameState/GameState.hpp"
+#include "../GameStateManager/GameStateManager.hpp"
+#include "../Controller/Controller.hpp"
+
+class PlayingState : public GameState {
+
+public:
+
+    static const bool transparentRender = false;
+    static const bool transparentUpdate = false;
+    static const bool transparentInput = false;
+
+    PlayingState ();
+    ~PlayingState ();
+
+    void onActivate ();
+    void onDeactivate ();
+    void onPush ();
+    void onPop ();
+    void onAscend ();
+    void onDescend ();
+
+    void render (double);
+    void update ();
+
+private:
+
+};
+
+#endif

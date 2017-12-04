@@ -3,6 +3,7 @@
 
 #include <functional>
 #include "../GameState/GameState.hpp"
+#include "../GameStateManager/GameStateManager.hpp"
 #include "../LoopKeybinding/LoopKeybinding.hpp"
 #include "../AssetStore/AssetStore.hpp"
 #include "../Button/Button.hpp"

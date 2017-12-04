@@ -13,7 +13,7 @@ MenuState::~MenuState () {}
 
 void MenuState::onActivate () {
 
-    Log::verbose("Loading... forever at the moment...");
+    Log::verbose("Loading...");
 
     m_titleTexture.loadFromImage(*AssetStore::getImage("title"));
     m_titleSprite = sf::Sprite(m_titleTexture);
@@ -51,6 +51,6 @@ void MenuState::update () {}
 
 void MenuState::startGame () {
 
-    Log::verbose("Starting game!");
+    GameStateManager::pushState("playing");
 
 }
