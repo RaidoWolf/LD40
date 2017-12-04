@@ -33,8 +33,8 @@ void World::generateTerrain () {
 
             unsigned int pindex = indexOf(px, py);
 
-            heightMap[pindex] = fn.GetNoise(static_cast<double>(px), static_cast<double>(py));
-            zoneMap[pindex] = fn.GetNoise(static_cast<double>(px), static_cast<double>(py));
+            heightMap[pindex] = fn.GetNoise(static_cast<double>(px * 3), static_cast<double>(py * 3));
+            zoneMap[pindex] = fn.GetNoise(static_cast<double>(px * 2), static_cast<double>(py * 2));
 
         }
     }
@@ -64,9 +64,9 @@ void World::generateTerrain () {
                 x == 1023
             ) {
 
-                if (zoneMap[index] > 0.333) {
+                if (zoneMap[index] > 0.1) {
                     m_blocks[index] = World::Block::Ice;
-                } else if (zoneMap[index] > -0.333) {
+                } else if (zoneMap[index] > -0.1) {
                     m_blocks[index] = World::Block::Stone;
                 } else {
                     m_blocks[index] = World::Block::Trees;
@@ -95,9 +95,9 @@ void World::generateTerrain () {
 
             if (height > 0.0) {
 
-                if (zoneMap[index] > 0.333) {
+                if (zoneMap[index] > 0.1) {
                     m_blocks[index] = World::Block::Ice;
-                } else if (zoneMap[index] > -0.333) {
+                } else if (zoneMap[index] > -0.1) {
                     m_blocks[index] = World::Block::Stone;
                 } else {
                     m_blocks[index] = World::Block::Trees;
