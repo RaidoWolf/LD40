@@ -42,7 +42,7 @@ LoadingState::~LoadingState () {}
 
 void LoadingState::onActivate () {
 
-    Log::verbose("Loading... forever at the moment...");
+    Log::verbose("Loading...");
 
 }
 
@@ -73,6 +73,9 @@ void LoadingState::render (double deltaTime) {
 
 void LoadingState::update () {
 
-    m_progressBar.incrementFill(0.0001);
+    m_progressBar.incrementFill(0.005);
+    if (m_progressBar.getFill() == 1.0) {
+        GameStateManager::pushState("menu");
+    }
 
 }

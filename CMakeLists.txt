@@ -28,6 +28,8 @@ list (APPEND SOURCES
     # game code
     src/class/AssetStore/AssetStore.hpp
     src/class/AssetStore/AssetStore.cpp
+    src/class/Button/Button.hpp
+    src/class/Button/Button.cpp
     src/class/Controller/Controller.hpp
     src/class/Controller/Controller.cpp
     src/class/GameLoop/GameLoop.hpp
@@ -46,6 +48,8 @@ list (APPEND SOURCES
     src/class/Log/Log.cpp
     src/class/LoopKeybinding/LoopKeybinding.hpp
     src/class/LoopKeybinding/LoopKeybinding.cpp
+    src/class/MenuState/MenuState.hpp
+    src/class/MenuState/MenuState.cpp
     src/class/ProgressBar/ProgressBar.hpp
     src/class/ProgressBar/ProgressBar.cpp
     src/class/Window/Window.hpp

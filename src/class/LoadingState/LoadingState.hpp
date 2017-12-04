@@ -2,6 +2,7 @@
 #define H_CLASS_LOADINGSTATE
 
 #include "../GameState/GameState.hpp"
+#include "../GameStateManager/GameStateManager.hpp"
 #include "../LoopKeybinding/LoopKeybinding.hpp"
 #include "../AssetStore/AssetStore.hpp"
 #include "../ProgressBar/ProgressBar.hpp"

@@ -8,6 +8,7 @@
 #include "class/GameStateStore/GameStateStore.hpp"
 #include "class/GameLoop/GameLoop.hpp"
 #include "class/LoadingState/LoadingState.hpp"
+#include "class/MenuState/MenuState.hpp"
 #include "config.h"
 
 int main (int argc, const char* argv[]) {
@@ -18,6 +19,7 @@ int main (int argc, const char* argv[]) {
     Log::verbose("Starting LD40 game!");
 
     GameStateStore::registerState("loading", new LoadingState);
+    GameStateStore::registerState("menu", new MenuState);
     GameStateManager::pushState("loading");
 
     // create game window
