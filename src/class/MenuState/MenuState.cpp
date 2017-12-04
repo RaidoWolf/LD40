@@ -5,6 +5,8 @@ MenuState::MenuState () {
     m_clearWindow = true;
     m_clearColor = sf::Color(38, 118, 248, 255);
 
+    m_startButton.setPosition(400, 300);
+
 }
 
 MenuState::~MenuState () {}
