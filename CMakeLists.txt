@@ -25,6 +25,10 @@ include_directories ("${PROJECT_BINARY_DIR}")
 # sources list
 list (APPEND SOURCES
 
+    # library code
+    src/lib/PerlinNoiseCpp/Perlin.h
+    src/lib/PerlinNoiseCpp/Perlin.cpp
+
     # game code
     src/class/AssetStore/AssetStore.hpp
     src/class/AssetStore/AssetStore.cpp
@@ -56,6 +60,8 @@ list (APPEND SOURCES
     src/class/ProgressBar/ProgressBar.cpp
     src/class/Window/Window.hpp
     src/class/Window/Window.cpp
+    src/class/World/World.hpp
+    src/class/World/World.cpp
     src/enum/LogLevel/LogLevel.hpp
 
     # entry point

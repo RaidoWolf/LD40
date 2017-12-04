@@ -5,6 +5,7 @@
 #include "../GameState/GameState.hpp"
 #include "../GameStateManager/GameStateManager.hpp"
 #include "../Controller/Controller.hpp"
+#include "../World/World.hpp"
 
 class PlayingState : public GameState {
 
@@ -28,6 +29,8 @@ public:
     void update ();
 
 private:
+
+    World* m_world = nullptr;
 
 };
 
