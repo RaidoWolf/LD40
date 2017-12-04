@@ -73,7 +73,7 @@ void LoadingState::render (double deltaTime) {
 
 void LoadingState::update () {
 
-    m_progressBar.incrementFill(0.005);
+    m_progressBar.incrementFill(0.02);
     if (m_progressBar.getFill() == 1.0) {
         GameStateManager::pushState("menu");
     }

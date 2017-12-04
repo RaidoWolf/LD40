@@ -54,6 +54,10 @@ Button::Button (
     setForegroundColor(foregroundColor);
     setAlignment(alignment);
 
+    controller.addMouseButtonPressCallback(
+        [this](int button, int x, int y){this->onClick(button, x, y);}
+    );
+
     m_borderElement.setOutlineThickness(2.0);
 
 }
@@ -335,11 +339,15 @@ void Button::updateSize () {
 
 void Button::updateFont () {
 
+    m_textElement.setFont(*m_font);
+
     updateSize();
 
 }
 
 void Button::updateText () {
+
+    m_textElement.setString(m_text);
 
     updateSize();
 
