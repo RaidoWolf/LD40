@@ -15,6 +15,11 @@ void MenuState::onActivate () {
 
     Log::verbose("Loading... forever at the moment...");
 
+    m_titleTexture.loadFromImage(*AssetStore::getImage("title"));
+    m_titleSprite = sf::Sprite(m_titleTexture);
+    m_titleSprite.setOrigin(128.0, 32.0);
+    m_titleSprite.setPosition(400.0, 180.0);
+
 }
 
 void MenuState::onDeactivate () {
@@ -37,6 +42,7 @@ void MenuState::onDescend () {}
 
 void MenuState::render (double deltaTime) {
 
+    Window::draw(m_titleSprite);
     m_startButton.render();
 
 }

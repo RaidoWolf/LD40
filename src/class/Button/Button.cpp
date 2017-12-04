@@ -81,11 +81,58 @@ void Button::onClick (int button, int x, int y) {
 
     if (button == sf::Mouse::Left) {
         auto rect = m_borderElement.getLocalBounds();
+        float offsetX = 0.0;
+        float offsetY = 0.0;
+        switch (m_alignment) {
+
+            case Button::Alignment::TopLeft:
+                break;
+
+            case Button::Alignment::TopCenter:
+                offsetX = rect.width * 0.5;
+                break;
+
+            case Button::Alignment::TopRight:
+                offsetX = rect.width;
+                break;
+
+            case Button::Alignment::LeftCenter:
+                offsetY = rect.height * 0.5;
+                break;
+
+            case Button::Alignment::Center:
+                offsetX = rect.width * 0.5;
+                offsetY = rect.height * 0.5;
+                break;
+
+            case Button::Alignment::RightCenter:
+                offsetX = rect.width;
+                offsetY = rect.height * 0.5;
+                break;
+
+            case Button::Alignment::BottomLeft:
+                offsetY = rect.height;
+                break;
+
+            case Button::Alignment::BottomCenter:
+                offsetX = rect.width * 0.5;
+                offsetY = rect.height;
+                break;
+
+            case Button::Alignment::BottomRight:
+                offsetX = rect.width;
+                offsetY = rect.height;
+                break;
+
+            default:
+                return;
+
+        }
         if (
-            x > rect.left &&
-            x < (rect.left + rect.width) &&
-            y > rect.top &&
-            y < (rect.top + rect.height)
+            x >= rect.left + m_positionX - offsetX &&
+            x <= rect.left + m_positionX + rect.width - offsetX &&
+            y >= rect.top + m_positionY - offsetY &&
+            y <= rect.top + m_positionY + rect.height - offsetY
         ) {
             onPress();
         }

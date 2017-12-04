@@ -16,7 +16,7 @@ LoadingState::LoadingState () {
 
     sf::Font* mainFont = new sf::Font();
     if (!mainFont->loadFromFile("./res/fonts/poiretone/PoiretOne-Regular.ttf")) {
-        Log::warning("Could not load PoiretOne-Regular.ttf.");
+        Log::warning("Could not load ./res/fonts/poiretone/PoiretOne-Regular.ttf.");
     }
     AssetStore::registerFont("main", mainFont);
 
@@ -43,6 +43,13 @@ LoadingState::~LoadingState () {}
 void LoadingState::onActivate () {
 
     Log::verbose("Loading...");
+
+    sf::Image* titleImage = new sf::Image();
+    if (!titleImage->loadFromFile("./res/images/speedfishing-title.png")) {
+        Log::warning("Could not load ./res/images/speedfishing-title.png.");
+    }
+    AssetStore::registerImage("title", titleImage);
+    m_progressBar.setFill(1.0);
 
 }
 
@@ -73,7 +80,6 @@ void LoadingState::render (double deltaTime) {
 
 void LoadingState::update () {
 
-    m_progressBar.incrementFill(0.02);
     if (m_progressBar.getFill() == 1.0) {
         GameStateManager::pushState("menu");
     }

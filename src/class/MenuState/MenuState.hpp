@@ -50,6 +50,9 @@ private:
         Button::Alignment::Center
     };
 
+    sf::Texture m_titleTexture;
+    sf::Sprite m_titleSprite;
+
 };
 
 #endif
