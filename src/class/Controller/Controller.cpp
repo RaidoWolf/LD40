@@ -23,7 +23,6 @@ void Controller::loopCheck () {
 
 void Controller::onKeyPress (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
 
-    Log::verbose("Key pressed.");
     for (int i = 0; i < m_keybindings.size(); ++i) {
         m_keybindings[i].process(true, key, alt, control, shift);
     }
@@ -32,7 +31,6 @@ void Controller::onKeyPress (sf::Keyboard::Key key, bool alt, bool control, bool
 
 void Controller::onKeyRelease (sf::Keyboard::Key key, bool alt, bool control, bool shift) {
 
-    Log::verbose("Key released.");
     for (int i = 0; i < m_keybindings.size(); ++i) {
         m_keybindings[i].process(false, key, alt, control, shift);
     }
@@ -41,7 +39,6 @@ void Controller::onKeyRelease (sf::Keyboard::Key key, bool alt, bool control, bo
 
 void Controller::onLoopKey (const std::vector<sf::Keyboard::Key>& keys) {
 
-    Log::verbose("Key held.");
     for (int i = 0; i < m_loopKeybindings.size(); ++i) {
         m_loopKeybindings[i].process(keys);
     }
@@ -50,7 +47,6 @@ void Controller::onLoopKey (const std::vector<sf::Keyboard::Key>& keys) {
 
 void Controller::onText (sf::Uint32 character) {
 
-    Log::verbose("Text entered.");
     for (int i = 0; i < m_textCallbacks.size(); ++i) {
         m_textCallbacks[i](character);
     }
@@ -59,7 +55,6 @@ void Controller::onText (sf::Uint32 character) {
 
 void Controller::onCursor (double xPos, double yPos) {
 
-    Log::verbose("Cursor moved.");
     m_lastMouseX = xPos;
     m_lastMouseY = yPos;
     for (int i = 0; i < m_cursorCallbacks.size(); ++i) {
@@ -70,7 +65,6 @@ void Controller::onCursor (double xPos, double yPos) {
 
 void Controller::onCursorIn () {
 
-    Log::verbose("Cursor entered");
     for (int i = 0; i < m_cursorInCallbacks.size(); ++i) {
         m_cursorInCallbacks[i]();
     }
@@ -79,7 +73,6 @@ void Controller::onCursorIn () {
 
 void Controller::onCursorOut () {
 
-    Log::verbose("Cursor exited.");
     for (int i = 0; i < m_cursorOutCallbacks.size(); ++i) {
         m_cursorOutCallbacks[i]();
     }
@@ -88,7 +81,6 @@ void Controller::onCursorOut () {
 
 void Controller::onFocus () {
 
-    Log::verbose("Window focused.");
     for (int i = 0; i < m_focusCallbacks.size(); ++i) {
         m_focusCallbacks[i]();
     }
@@ -97,7 +89,6 @@ void Controller::onFocus () {
 
 void Controller::onUnfocus () {
 
-    Log::verbose("Window unfocused");
     for (int i = 0; i < m_unfocusCallbacks.size(); ++i) {
         m_unfocusCallbacks[i]();
     }
@@ -106,7 +97,6 @@ void Controller::onUnfocus () {
 
 void Controller::onMouseButtonPress (int buttons, int x, int y) {
 
-    Log::verbose("Mouse button pressed.");
     m_lastButtons = buttons;
     m_lastMouseX = x;
     m_lastMouseY = y;
@@ -119,7 +109,6 @@ void Controller::onMouseButtonPress (int buttons, int x, int y) {
 
 void Controller::onMouseButtonRelease (int buttons, int x, int y) {
 
-    Log::verbose("Mouse button released.");
     m_mouseIsDown = false;
     for (int i = 0; i < m_mouseButtonReleaseCallbacks.size(); ++i) {
         m_mouseButtonReleaseCallbacks[i](buttons, x, y);
@@ -129,7 +118,6 @@ void Controller::onMouseButtonRelease (int buttons, int x, int y) {
 
 void Controller::onLoopMouseButton (int buttons, int x, int y) {
 
-    Log::verbose("Mouse button held.");
     for (int i = 0; i < m_loopMouseButtonCallbacks.size(); ++i) {
         m_loopMouseButtonCallbacks[i](buttons, x, y);
     }
@@ -138,7 +126,6 @@ void Controller::onLoopMouseButton (int buttons, int x, int y) {
 
 void Controller::onScroll (double offset) {
 
-    Log::verbose("Mouse scrolled.");
     for (int i = 0; i < m_scrollCallbacks.size(); ++i) {
         m_scrollCallbacks[i](offset);
     }
@@ -147,7 +134,6 @@ void Controller::onScroll (double offset) {
 
 void Controller::onResize (int width, int height) {
 
-    Log::verbose("Window resized.");
     for (int i = 0; i < m_resizeCallbacks.size(); ++i) {
         m_resizeCallbacks[i](width, height);
     }
