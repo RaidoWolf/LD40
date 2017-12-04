@@ -2,6 +2,7 @@
 #define H_CLASS_GAMESTATE
 
 #include "../Controller/Controller.hpp"
+#include "../Window/Window.hpp"
 class GameStateManager;
 
 class GameState {
@@ -26,6 +27,7 @@ public:
     virtual void onDescend () {}
 
     // game loop callbacks
+    void clearWindow ();
     virtual void render (double) {}
     virtual void update () {}
 
@@ -37,6 +39,8 @@ public:
 protected:
 
     Controller m_controller;
+    bool m_clearWindow = false;
+    sf::Color m_clearColor = sf::Color(0, 0, 0, 1);
 
 };
 

@@ -142,6 +142,7 @@ void GameLoop::run () {
                 double deltaTime = m_updateLoopClock.getElapsedTime().asSeconds();
                 render(deltaTime);
                 Window::clear();
+                GameStateManager::clearWindow();
                 Window::display();
 
             }

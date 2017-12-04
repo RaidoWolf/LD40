@@ -31,6 +31,7 @@ public:
 
     static void display ();
     static void clear ();
+    static void clear (const sf::Color);
     static bool pollEvent (sf::Event&);
 
     static int getWidth ();

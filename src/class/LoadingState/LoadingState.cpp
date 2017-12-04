@@ -6,6 +6,9 @@ LoadingState::LoadingState () {
         LoopKeybinding([](){}, sf::Keyboard::Key::LShift)
     );
 
+    m_clearWindow = true;
+    m_clearColor = sf::Color(255, 255, 255, 255);
+
 }
 
 LoadingState::~LoadingState () {}

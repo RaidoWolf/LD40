@@ -63,7 +63,7 @@ void Window::close () {
 void Window::display () {
 
     if (!Window::exists()) {
-        Log::warning("Cannot display window because it is not open");
+        Log::warning("Cannot display window because it is not open.");
         return;
     }
 
@@ -74,11 +74,21 @@ void Window::display () {
 void Window::clear () {
 
     if (!Window::exists()) {
-        Log::warning("Cannot clear window because it is not open");
+        Log::warning("Cannot clear window because it is not open.");
         return;
     }
 
     m_context->clear();
+
+}
+
+void Window::clear (const sf::Color color) {
+
+    if (!Window::exists()) {
+        Log::warning("Cannot clear window because it is not open.");
+    }
+
+    m_context->clear(color);
 
 }
 

@@ -24,6 +24,7 @@ public:
 
     static void refreshLiveStates ();
 
+    static void clearWindow ();
     static void render (double);
 
     static void update ();

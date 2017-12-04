@@ -131,9 +131,17 @@ void GameStateManager::refreshLiveStates () {
 
 }
 
+void GameStateManager::clearWindow () {
+
+    for (int i = m_statesLiveRender.size() - 1; i >= 0; --i) {
+        m_statesLiveRender[i]->clearWindow();
+    }
+
+}
+
 void GameStateManager::render (double deltaTime) {
 
-    for (int i = 0; i < m_statesLiveRender.size(); ++i) {
+    for (int i = m_statesLiveRender.size() - 1; i >= 0; --i) {
         m_statesLiveRender[i]->render(deltaTime);
     }
 
