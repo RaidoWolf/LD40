@@ -11,3 +11,5 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 /src/config.h
 /LD40
+/LD40-*
+/_CPack_Packages
