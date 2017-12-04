@@ -22,6 +22,8 @@ public:
 
     void generateTerrain ();
 
+    void setCamera (float x, float y);
+    void moveCamera (float x, float y);
     void render ();
 
 private:
@@ -29,7 +31,6 @@ private:
     unsigned int indexOf (unsigned int, unsigned int);
 
     char* m_blocks;
-
 
     sf::Texture m_treesTexture;
     sf::Sprite m_treesSprite;
@@ -39,6 +40,9 @@ private:
     sf::Sprite m_iceSprite;
     sf::Texture m_waterTexture;
     sf::Sprite m_waterSprite;
+
+    float m_cameraX = 0;
+    float m_cameraY = 0;
 
 };
 

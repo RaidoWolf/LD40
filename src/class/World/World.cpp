@@ -113,31 +113,64 @@ void World::generateTerrain () {
 
 }
 
+void World::setCamera (float x, float y) {
+
+    m_cameraX = x;
+    m_cameraY = y;
+
+}
+
+void World::moveCamera (float x, float y) {
+
+    m_cameraX += x;
+    m_cameraY += y;
+
+}
+
 void World::render () {
 
-    for (unsigned int y = 0; y < 32; ++y) {
-        for (unsigned int x = 0; x < 32; ++x) {
+    int centerBlockX = static_cast<int>(m_cameraX / 32.0);
+    int centerBlockY = static_cast<int>(m_cameraY / 32.0);
 
-            switch (m_blocks[indexOf(x, y)]) {
+    if (centerBlockX < 16) {
+        centerBlockX = 16;
+    }
+
+    if (centerBlockX > 1008) {
+        centerBlockX = 1008;
+    }
+
+    if (centerBlockY < 16) {
+        centerBlockY = 16;
+    }
+
+    if (centerBlockY > 1008) {
+        centerBlockY = 1008;
+    }
+
+    for (int y = -16; y < 16; ++y) {
+        for (int x = -16; x < 16; ++x) {
+
+            switch (m_blocks[indexOf(x + centerBlockX, y + centerBlockY)]) {
 
                 case World::Block::Ice:
-                    m_iceSprite.setPosition(32.0 * x, 32.0 * y);
+                    m_iceSprite.setPosition(32.0 * (x + 16) - m_cameraX + 400, 32.0 * (y + 16) - m_cameraY + 300);
                     Window::draw(m_iceSprite);
                     break;
 
                 case World::Block::Stone:
-                    m_stoneSprite.setPosition(32.0 * x, 32.0 * y);
+                    m_stoneSprite.setPosition(32.0 * (x + 16) - m_cameraX + 400, 32.0 * (y + 16) - m_cameraY + 300);
                     Window::draw(m_stoneSprite);
                     break;
 
                 case World::Block::Trees:
-                    m_treesSprite.setPosition(32.0 * x, 32.0 * y);
+                    m_treesSprite.setPosition(32.0 * (x + 16) - m_cameraX + 400, 32.0 * (y + 16) - m_cameraY + 300);
                     Window::draw(m_treesSprite);
                     break;
 
                 case World::Block::Water:
                 default:
-                    m_waterSprite.setPosition(32.0 * x, 32.0 * y);
+                    m_waterSprite.setPosition(32.0 * (x + 16) - m_cameraX + 400, 32.0 * (y + 16) - m_cameraY + 300);
                     Window::draw(m_waterSprite);
                     break;
 

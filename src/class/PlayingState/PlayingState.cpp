@@ -5,6 +5,34 @@ PlayingState::PlayingState () {
     m_clearWindow = true;
     m_clearColor = sf::Color(0, 0, 0, 255);
 
+    m_controller.addLoopKeybinding(LoopKeybinding(
+        [&](){
+            m_world->moveCamera(0.0, -5.0);
+        },
+        sf::Keyboard::Key::W
+    ));
+
+    m_controller.addLoopKeybinding(LoopKeybinding(
+        [&](){
+            m_world->moveCamera(-5.0, 0.0);
+        },
+        sf::Keyboard::Key::A
+    ));
+
+    m_controller.addLoopKeybinding(LoopKeybinding(
+        [&](){
+            m_world->moveCamera(0.0, 5.0);
+        },
+        sf::Keyboard::Key::S
+    ));
+
+    m_controller.addLoopKeybinding(LoopKeybinding(
+        [&](){
+            m_world->moveCamera(5.0, 0.0);
+        },
+        sf::Keyboard::Key::D
+    ));
+
 }
 
 PlayingState::~PlayingState () {}
