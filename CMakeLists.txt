@@ -16,9 +16,6 @@ set (CMAKE_CXX_STANDARD 14)
 set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
 set (CMAKE_CXX_FLAGS_DEBUG "-g")
 set (CMAKE_CXX_FLAGS_RELEASE "-O3")
-if (CMAKE_BUILD_TYPE MATCHES Debug)
-    set (CMAKE_VERBOSE_MAKEFILE ON)
-endif ()
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/config.h.in"
     "${PROJECT_BINARY_DIR}/src/config.h"
@@ -29,6 +26,8 @@ include_directories ("${PROJECT_BINARY_DIR}")
 list (APPEND SOURCES
 
     # game code
+    src/class/AssetStore/AssetStore.hpp
+    src/class/AssetStore/AssetStore.cpp
     src/class/Controller/Controller.hpp
     src/class/Controller/Controller.cpp
     src/class/GameLoop/GameLoop.hpp

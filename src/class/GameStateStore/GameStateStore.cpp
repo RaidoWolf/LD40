@@ -22,12 +22,11 @@ GameState* GameStateStore::getState (std::string key) {
 
 bool GameStateStore::registerState (std::string key, GameState* gameState) {
 
-    if (!stateExists(key)) {
-        m_stateMap.insert(std::pair<std::string, GameState*>(key, gameState));
-    } else {
+    if (stateExists(key)) {
         return false;
     }
 
+    m_stateMap.insert(std::pair<std::string, GameState*>(key, gameState));
     return true;
 
 }

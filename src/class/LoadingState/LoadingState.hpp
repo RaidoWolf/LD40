@@ -3,6 +3,7 @@
 
 #include "../GameState/GameState.hpp"
 #include "../LoopKeybinding/LoopKeybinding.hpp"
+#include "../AssetStore/AssetStore.hpp"
 #include "../Log/Log.hpp"
 
 class LoadingState : public GameState {
