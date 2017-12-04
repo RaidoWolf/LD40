@@ -68,9 +68,9 @@ private:
 
     double m_fill = 0.000;
 
-    float m_width = 1000;
-    float m_height = 50;
-    float m_padding = 5;
+    float m_width = 500.0;
+    float m_height = 50.0;
+    float m_padding = 5.0;
 
     sf::Color m_backgroundColor {0, 0, 0, 255};
     sf::Color m_foregroundColor {255, 255, 255, 255};

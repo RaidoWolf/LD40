@@ -81,8 +81,8 @@ void ProgressBar::setOriginY (float y) {
 
 void ProgressBar::setOriginToCenter () {
 
-    setOriginX(m_width / 2);
-    setOriginY(m_height / 2);
+    setOriginX(m_width * 0.5);
+    setOriginY(m_height * 0.5);
 
 }
 
@@ -211,29 +211,27 @@ void ProgressBar::setForegroundColor (sf::Color color) {
 
 void ProgressBar::updatePositionX () {
 
-    m_backgroundRect.setPosition(m_positionX, m_backgroundRect.getPosition().y);
-    m_foregroundRect.setPosition(m_positionX + m_padding, m_foregroundRect.getPosition().y);
+    m_backgroundRect.setPosition(m_positionX - m_originX, m_backgroundRect.getPosition().y);
+    m_foregroundRect.setPosition(m_positionX + m_padding - m_originX, m_foregroundRect.getPosition().y);
 
 }
 
 void ProgressBar::updatePositionY () {
 
-    m_backgroundRect.setPosition(m_backgroundRect.getPosition().x, m_positionY);
-    m_foregroundRect.setPosition(m_foregroundRect.getPosition().x, m_positionY + m_padding);
+    m_backgroundRect.setPosition(m_backgroundRect.getPosition().x, m_positionY - m_originY);
+    m_foregroundRect.setPosition(m_foregroundRect.getPosition().x, m_positionY + m_padding - m_originY);
 
 }
 
 void ProgressBar::updateOriginX () {
 
-    m_backgroundRect.setOrigin(m_originX, m_backgroundRect.getOrigin().y);
-    m_backgroundRect.setOrigin(m_originX - m_padding, m_foregroundRect.getOrigin().y);
+    updatePositionX();
 
 }
 
 void ProgressBar::updateOriginY () {
 
-    m_backgroundRect.setOrigin(m_backgroundRect.getOrigin().x, m_originY);
-    m_foregroundRect.setOrigin(m_foregroundRect.getOrigin().x, m_originY - m_padding);
+    updatePositionY();
 
 }
 

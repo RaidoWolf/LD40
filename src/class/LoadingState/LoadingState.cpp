@@ -6,8 +6,8 @@ LoadingState::LoadingState () {
     m_clearColor = sf::Color(255, 255, 255, 255);
 
     m_progressBar.setWidth(500.0);
-    m_progressBar.setHeight(25.0);
-    m_progressBar.setPadding(2.5);
+    m_progressBar.setHeight(40.0);
+    m_progressBar.setPadding(5.0);
     m_progressBar.setOriginToCenter();
     m_progressBar.setPositionX(400.0);
     m_progressBar.setPositionY(300.0);
