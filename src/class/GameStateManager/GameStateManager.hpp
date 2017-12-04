@@ -4,10 +4,12 @@
 #include <vector>
 #include <memory>
 #include <mutex>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
 #include "../GameState/GameState.hpp"
+#include "../GameStateStore/GameStateStore.hpp"
 #include "../Window/Window.hpp"
 #include "../Log/Log.hpp"
 
@@ -16,6 +18,7 @@ class GameStateManager {
 public:
 
     static void pushState (GameState*);
+    static bool pushState (std::string);
     static void dropState ();
     static GameState* popState ();
 

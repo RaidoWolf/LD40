@@ -18,6 +18,17 @@ void GameStateManager::pushState (GameState* state) {
 
 }
 
+bool GameStateManager::pushState (std::string key) {
+
+    if (!GameStateStore::stateExists(key)) {
+        return false;
+    }
+
+    GameState* state = GameStateStore::getState(key);
+    pushState(state);
+
+}
+
 void GameStateManager::dropState () {
 
     GameState* top = m_states[m_states.size() - 1];
