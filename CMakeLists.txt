@@ -26,8 +26,8 @@ include_directories ("${PROJECT_BINARY_DIR}")
 list (APPEND SOURCES
 
     # library code
-    src/lib/PerlinNoiseCpp/Perlin.h
-    src/lib/PerlinNoiseCpp/Perlin.cpp
+    src/lib/FastNoise/FastNoise.h
+    src/lib/FastNoise/FastNoise.cpp
 
     # game code
     src/class/AssetStore/AssetStore.hpp

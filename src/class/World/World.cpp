@@ -22,7 +22,8 @@ World::~World () {}
 
 void World::generateTerrain () {
 
-    Perlin perlin;
+    FastNoise fn(8675309);
+    fn.SetNoiseType(FastNoise::NoiseType::CubicFractal);
 
     float* heightMap = new float[1048576];
     float* zoneMap = new float[1048576];
@@ -32,8 +33,8 @@ void World::generateTerrain () {
 
             unsigned int pindex = indexOf(px, py);
 
-            heightMap[pindex] = perlin.noise(px, py, 0.0);
-            zoneMap[pindex] = perlin.noise(px, py, 10.0);
+            heightMap[pindex] = fn.GetNoise(static_cast<double>(px), static_cast<double>(py));
+            zoneMap[pindex] = fn.GetNoise(static_cast<double>(px), static_cast<double>(py));
 
         }
     }

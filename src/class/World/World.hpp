@@ -1,10 +1,12 @@
 #ifndef H_CLASS_WORLD
 #define H_CLASS_WORLD
 
+#include <sstream>
 #include <SFML/Graphics.hpp>
-#include "../../lib/PerlinNoiseCpp/Perlin.h"
+#include "../../lib/FastNoise/FastNoise.h"
 #include "../Window/Window.hpp"
 #include "../AssetStore/AssetStore.hpp"
+#include "../Log/Log.hpp"
 
 class World {
 
