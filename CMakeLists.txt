@@ -32,6 +32,8 @@ list (APPEND SOURCES
     # game code
     src/class/AssetStore/AssetStore.hpp
     src/class/AssetStore/AssetStore.cpp
+    src/class/BoatyMcBoatFace/BoatyMcBoatFace.hpp
+    src/class/BoatyMcBoatFace/BoatyMcBoatFace.cpp
     src/class/Button/Button.hpp
     src/class/Button/Button.cpp
     src/class/Controller/Controller.hpp

@@ -7,6 +7,7 @@
 #include "../Window/Window.hpp"
 #include "../AssetStore/AssetStore.hpp"
 #include "../Log/Log.hpp"
+#include "../BoatyMcBoatFace/BoatyMcBoatFace.hpp"
 
 class World {
 
@@ -45,6 +46,8 @@ private:
 
     float m_cameraX = 0;
     float m_cameraY = 0;
+
+    BoatyMcBoatFace* m_player;
 
 };
 

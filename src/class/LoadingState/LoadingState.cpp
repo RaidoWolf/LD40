@@ -49,34 +49,41 @@ void LoadingState::onActivate () {
         Log::warning("Could not load ./res/images/speedfishing-title.png.");
     }
     AssetStore::registerImage("title", titleImage);
-    m_progressBar.setFill(0.2);
+    m_progressBar.setFill(0.1666);
 
     sf::Image* treesImage = new sf::Image();
     if (!treesImage->loadFromFile("./res/images/trees.png")) {
         Log::warning("Could not load ./res/images/trees.png");
     }
     AssetStore::registerImage("trees", treesImage);
-    m_progressBar.setFill(0.4);
+    m_progressBar.setFill(0.3333);
 
     sf::Image* stoneImage = new sf::Image();
     if (!stoneImage->loadFromFile("./res/images/stone.png")) {
         Log::warning("Could not load ./res/images/stone.png");
     }
     AssetStore::registerImage("stone", stoneImage);
-    m_progressBar.setFill(0.6);
+    m_progressBar.setFill(0.5);
 
     sf::Image* iceImage = new sf::Image();
     if (!iceImage->loadFromFile("./res/images/ice.png")) {
         Log::warning("Could not load ./res/images/ice.png");
     }
     AssetStore::registerImage("ice", iceImage);
-    m_progressBar.setFill(0.8);
+    m_progressBar.setFill(0.6667);
 
     sf::Image* waterImage = new sf::Image();
     if (!waterImage->loadFromFile("./res/images/water.png")) {
         Log::warning("Could not load ./res/images/water.png");
     }
     AssetStore::registerImage("water", waterImage);
+    m_progressBar.setFill(0.8333);
+
+    sf::Image* boatyMcBoatFaceImage = new sf::Image();
+    if (!boatyMcBoatFaceImage->loadFromFile("./res/images/player-boat.png")) {
+        Log::warning("Could not load ./res/images/player-boat.png");
+    }
+    AssetStore::registerImage("boatyMcBoatFace", boatyMcBoatFaceImage);
     m_progressBar.setFill(1.0);
 
 }

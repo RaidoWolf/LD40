@@ -14,6 +14,8 @@ World::World () {
 
     m_blocks = new char[1048576];
 
+    m_player = new BoatyMcBoatFace();
+
     generateTerrain();
 
 }
@@ -179,6 +181,8 @@ void World::render () {
 
         }
     }
+
+    m_player->render();
 
 }
 
