@@ -1,6 +1,6 @@
 # LD40
 
-My project for Ludum Dare 40!
+SpeedFishing - My project for Ludum Dare 40!
 
 ## Theme
 
