@@ -4,6 +4,7 @@ BoatyMcBoatFace::BoatyMcBoatFace () {
 
     m_boatTexture.loadFromImage(*AssetStore::getImage("boatyMcBoatFace"));
     m_boatSprite = sf::Sprite(m_boatTexture);
+    m_boatSprite.setOrigin(16.0, 24.0);
     m_boatSprite.setPosition(400.0, 300.0);
 
 }
