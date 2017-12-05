@@ -14,13 +14,19 @@ World::World () {
 
     m_blocks = new char[1048576];
 
-    m_player = new BoatyMcBoatFace();
+    m_player = new BoatyMcBoatFace(this);
 
     generateTerrain();
 
 }
 
 World::~World () {}
+
+BoatyMcBoatFace* World::getPlayer () {
+
+    return m_player;
+
+}
 
 void World::generateTerrain () {
 

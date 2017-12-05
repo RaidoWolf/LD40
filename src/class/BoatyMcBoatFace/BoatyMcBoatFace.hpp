@@ -5,12 +5,17 @@
 #include "../AssetStore/AssetStore.hpp"
 #include "../Window/Window.hpp"
 
+class World;
+
 class BoatyMcBoatFace {
 
 public:
 
-    BoatyMcBoatFace ();
+    explicit BoatyMcBoatFace (World*);
     ~BoatyMcBoatFace ();
+
+    void setPosition (float, float);
+    void movePosition (float, float);
 
     unsigned int getValue ();
     unsigned int getWeight ();
@@ -28,11 +33,16 @@ public:
 
 private:
 
+    float m_positionX = 16384.0;
+    float m_positionY = 16384.0;
+
     unsigned int m_value = 0;
     unsigned int m_weight = 0;
 
     sf::Texture m_boatTexture;
     sf::Sprite m_boatSprite;
+
+    World* m_world;
 
 };
 

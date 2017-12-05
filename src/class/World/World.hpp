@@ -24,6 +24,8 @@ public:
         Ice
     };
 
+    BoatyMcBoatFace* getPlayer ();
+
     void generateTerrain ();
 
     void setCamera (float x, float y);

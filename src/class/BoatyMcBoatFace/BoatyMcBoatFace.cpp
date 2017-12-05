@@ -1,7 +1,9 @@
 #include "BoatyMcBoatFace.hpp"
+#include "../World/World.hpp"
 
-BoatyMcBoatFace::BoatyMcBoatFace () {
+BoatyMcBoatFace::BoatyMcBoatFace (World* world) {
 
+    m_world = world;
     m_boatTexture.loadFromImage(*AssetStore::getImage("boatyMcBoatFace"));
     m_boatSprite = sf::Sprite(m_boatTexture);
     m_boatSprite.setOrigin(16.0, 24.0);
@@ -14,6 +16,22 @@ BoatyMcBoatFace::~BoatyMcBoatFace () {}
 unsigned int BoatyMcBoatFace::getValue () {
 
     return m_value;
+
+}
+
+void BoatyMcBoatFace::setPosition (float x, float y) {
+
+    m_positionX = x;
+    m_positionY = y;
+
+}
+
+void BoatyMcBoatFace::movePosition (float x, float y) {
+
+    m_positionX += x;
+    m_positionY += y;
+
+    m_world->setCamera(m_positionX, m_positionY);
 
 }
 
@@ -67,6 +85,6 @@ void BoatyMcBoatFace::render () {
 
 void BoatyMcBoatFace::update () {
 
-
+    m_world->setCamera(m_positionX, m_positionY);
 
 }
