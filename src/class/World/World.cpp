@@ -54,7 +54,7 @@ void World::generateTerrain () {
                 x >= 480 &&
                 x <= 543
             ) {
-                m_blocks[index] = World::Block::Water;
+                m_blocks[index] = World::Block::HomeWater;
                 continue;
             }
 
@@ -172,6 +172,7 @@ void World::render () {
                     break;
 
                 case World::Block::Water:
+                case World::Block::HomeWater:
                 default:
                     m_waterSprite.setPosition(32.0 * x - m_cameraX + 400, 32.0 * y - m_cameraY + 300);
                     Window::draw(m_waterSprite);

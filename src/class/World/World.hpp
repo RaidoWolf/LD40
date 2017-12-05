@@ -17,6 +17,7 @@ public:
     ~World ();
 
     enum Block {
+        HomeWater,
         Water,
         Trees,
         Stone,
