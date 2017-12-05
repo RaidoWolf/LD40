@@ -44,8 +44,8 @@ private:
     sf::Texture m_waterTexture;
     sf::Sprite m_waterSprite;
 
-    float m_cameraX = 0;
-    float m_cameraY = 0;
+    float m_cameraX = 16384;
+    float m_cameraY = 16384;
 
     BoatyMcBoatFace* m_player;
 

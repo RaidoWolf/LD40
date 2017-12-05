@@ -92,7 +92,7 @@ void World::generateTerrain () {
                     distanceFromWall = 1024 - y;
                 }
             }
-            float cutoff = static_cast<float>(distanceFromWall) / 1536.0;
+            float cutoff = static_cast<float>(distanceFromWall) / 4096.0;
             float height = heightMap[index] - cutoff;
 
             if (height > 0.0) {
