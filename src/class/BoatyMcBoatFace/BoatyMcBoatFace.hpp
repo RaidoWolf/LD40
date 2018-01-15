@@ -1,6 +1,7 @@
 #ifndef H_CLASS_BOATYMCBOATFACE
 #define H_CLASS_BOATYMCBOATFACE
 
+#include <math.h>
 #include <SFML/Graphics.hpp>
 #include "../AssetStore/AssetStore.hpp"
 #include "../Window/Window.hpp"

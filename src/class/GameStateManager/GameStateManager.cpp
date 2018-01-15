@@ -27,6 +27,8 @@ bool GameStateManager::pushState (std::string key) {
     GameState* state = GameStateStore::getState(key);
     pushState(state);
 
+    return true;
+
 }
 
 void GameStateManager::dropState () {
@@ -141,7 +143,7 @@ void GameStateManager::clearWindow () {
 
 void GameStateManager::render (double deltaTime) {
 
-    for (int i = m_statesLiveRender.size() - 1; i >= 0; --i) {
+    for (int i = 0; i < m_statesLiveRender.size(); ++i) {
         m_statesLiveRender[i]->render(deltaTime);
     }
 

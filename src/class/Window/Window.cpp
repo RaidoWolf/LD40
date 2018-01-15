@@ -8,7 +8,7 @@ sf::RenderWindow* Window::getContext () {
 
 bool Window::exists () {
 
-    return m_context != NULL;
+    return m_context != nullptr;
 
 }
 
