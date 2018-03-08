@@ -38,8 +38,6 @@ LoadingState::LoadingState () {
 
 }
 
-LoadingState::~LoadingState () {}
-
 void LoadingState::onActivate () {
 
     Log::verbose("Loading...");

@@ -2,11 +2,12 @@
 #define H_CLASS_WORLD
 
 #include <ctime>
+#include <memory>
 #include <SFML/Graphics.hpp>
-#include "../../lib/FastNoise/FastNoise.h"
-#include "../Window/Window.hpp"
-#include "../AssetStore/AssetStore.hpp"
-#include "../Log/Log.hpp"
+#include "../../engine/lib/FastNoise/FastNoise.h"
+#include "../../engine/class/Window/Window.hpp"
+#include "../../engine/class/AssetStore/AssetStore.hpp"
+#include "../../engine/class/Log/Log.hpp"
 #include "../BoatyMcBoatFace/BoatyMcBoatFace.hpp"
 
 class World {
@@ -14,7 +15,13 @@ class World {
 public:
 
     World ();
-    ~World ();
+    ~World () = default;
+
+    World (World&&) = default;
+    World& operator = (World&&) = default;
+
+    World (const World&) = default;
+    World& operator = (const World&) = default;
 
     enum Block {
         HomeWater,
@@ -24,7 +31,7 @@ public:
         Ice
     };
 
-    BoatyMcBoatFace* getPlayer ();
+    BoatyMcBoatFace* getPlayer () const;
 
     void generateTerrain ();
 
@@ -34,8 +41,10 @@ public:
 
 private:
 
-    unsigned int indexOf (unsigned int, unsigned int);
+    unsigned int indexOf (unsigned int, unsigned int) const;
 
+    float* m_heightMap;
+    float* m_zoneMap;
     char* m_blocks;
 
     sf::Texture m_treesTexture;
@@ -50,7 +59,7 @@ private:
     float m_cameraX = 16384;
     float m_cameraY = 16384;
 
-    BoatyMcBoatFace* m_player;
+    std::unique_ptr<BoatyMcBoatFace> m_player;
 
 };
 

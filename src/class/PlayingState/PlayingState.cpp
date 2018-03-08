@@ -35,17 +35,15 @@ PlayingState::PlayingState () {
 
 }
 
-PlayingState::~PlayingState () {}
-
 void PlayingState::onActivate () {
 
     Log::verbose("Playing...");
 
     if (m_world) {
-        delete m_world;
+        m_world.reset();
     }
 
-    m_world = new World();
+    m_world = std::unique_ptr<World>(new World());
 
 }
 

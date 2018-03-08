@@ -2,12 +2,12 @@
 #define H_CLASS_MENUSTATE
 
 #include <functional>
-#include "../GameState/GameState.hpp"
-#include "../GameStateManager/GameStateManager.hpp"
-#include "../LoopKeybinding/LoopKeybinding.hpp"
-#include "../AssetStore/AssetStore.hpp"
-#include "../Button/Button.hpp"
-#include "../Log/Log.hpp"
+#include "../../engine/class/GameState/GameState.hpp"
+#include "../../engine/class/GameStateManager/GameStateManager.hpp"
+#include "../../engine/class/LoopKeybinding/LoopKeybinding.hpp"
+#include "../../engine/class/AssetStore/AssetStore.hpp"
+#include "../../engine/class/Button/Button.hpp"
+#include "../../engine/class/Log/Log.hpp"
 
 class MenuState : public GameState {
 
@@ -18,17 +18,23 @@ public:
     static const bool transparentInput = false;
 
     MenuState ();
-    ~MenuState ();
+    ~MenuState () override = default;
 
-    void onActivate ();
-    void onDeactivate ();
-    void onPush ();
-    void onPop ();
-    void onAscend ();
-    void onDescend ();
+    MenuState (MenuState&&) = default;
+    MenuState& operator = (MenuState&&) = default;
 
-    void render (double);
-    void update ();
+    MenuState (const MenuState&) = default;
+    MenuState& operator = (const MenuState&) = default;
+
+    void onActivate () override;
+    void onDeactivate () override;
+    void onPush () override;
+    void onPop () override;
+    void onAscend () override;
+    void onDescend () override;
+
+    void render (double) override;
+    void update () override;
 
     void startGame ();
 

@@ -2,12 +2,13 @@
 #define H_CLASS_PLAYINGSTATE
 
 #include <functional>
+#include <memory>
 #include <SFML/Graphics.hpp>
-#include "../GameState/GameState.hpp"
-#include "../GameStateManager/GameStateManager.hpp"
-#include "../Controller/Controller.hpp"
+#include "../../engine/class/GameState/GameState.hpp"
+#include "../../engine/class/GameStateManager/GameStateManager.hpp"
+#include "../../engine/class/Controller/Controller.hpp"
+#include "../../engine/class/LoopKeybinding/LoopKeybinding.hpp"
 #include "../World/World.hpp"
-#include "../LoopKeybinding/LoopKeybinding.hpp"
 
 class PlayingState : public GameState {
 
@@ -18,21 +19,27 @@ public:
     static const bool transparentInput = false;
 
     PlayingState ();
-    ~PlayingState ();
+    ~PlayingState () override = default;
 
-    void onActivate ();
-    void onDeactivate ();
-    void onPush ();
-    void onPop ();
-    void onAscend ();
-    void onDescend ();
+    PlayingState (PlayingState&&) = default;
+    PlayingState& operator = (PlayingState&&) = default;
 
-    void render (double);
-    void update ();
+    PlayingState (const PlayingState&) = default;
+    PlayingState& operator = (const PlayingState&) = default;
+
+    void onActivate () override;
+    void onDeactivate () override;
+    void onPush () override;
+    void onPop () override;
+    void onAscend () override;
+    void onDescend () override;
+
+    void render (double) override;
+    void update () override;
 
 private:
 
-    World* m_world = nullptr;
+    std::unique_ptr<World> m_world;
 
 };
 

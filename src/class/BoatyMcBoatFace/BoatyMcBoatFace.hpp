@@ -3,8 +3,8 @@
 
 #include <math.h>
 #include <SFML/Graphics.hpp>
-#include "../AssetStore/AssetStore.hpp"
-#include "../Window/Window.hpp"
+#include "../../engine/class/AssetStore/AssetStore.hpp"
+#include "../../engine/class/Window/Window.hpp"
 
 class World;
 
@@ -13,13 +13,19 @@ class BoatyMcBoatFace {
 public:
 
     explicit BoatyMcBoatFace (World*);
-    ~BoatyMcBoatFace ();
+    ~BoatyMcBoatFace () = default;
+
+    BoatyMcBoatFace (BoatyMcBoatFace&&) = default;
+    BoatyMcBoatFace& operator = (BoatyMcBoatFace&&) = default;
+
+    BoatyMcBoatFace (const BoatyMcBoatFace&) = default;
+    BoatyMcBoatFace& operator = (const BoatyMcBoatFace&) = default;
 
     void setPosition (float, float);
     void movePosition (float, float);
 
-    unsigned int getValue ();
-    unsigned int getWeight ();
+    unsigned int getValue () const;
+    unsigned int getWeight () const;
 
     void setValue (unsigned int);
     void addValue (int);

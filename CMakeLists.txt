@@ -25,46 +25,48 @@ include_directories ("${PROJECT_BINARY_DIR}")
 # sources list
 list (APPEND SOURCES
 
-    # library code
-    src/lib/FastNoise/FastNoise.h
-    src/lib/FastNoise/FastNoise.cpp
+    # engine library code
+    src/engine/lib/FastNoise/FastNoise.h
+    src/engine/lib/FastNoise/FastNoise.cpp
+
+    # engine code
+    src/engine/class/AssetStore/AssetStore.hpp
+    src/engine/class/AssetStore/AssetStore.cpp
+    src/engine/class/Button/Button.hpp
+    src/engine/class/Button/Button.cpp
+    src/engine/class/Controller/Controller.hpp
+    src/engine/class/Controller/Controller.cpp
+    src/engine/class/GameLoop/GameLoop.hpp
+    src/engine/class/GameLoop/GameLoop.cpp
+    src/engine/class/GameState/GameState.hpp
+    src/engine/class/GameState/GameState.cpp
+    src/engine/class/GameStateManager/GameStateManager.hpp
+    src/engine/class/GameStateManager/GameStateManager.cpp
+    src/engine/class/GameStateStore/GameStateStore.hpp
+    src/engine/class/GameStateStore/GameStateStore.cpp
+    src/engine/class/Keybinding/Keybinding.hpp
+    src/engine/class/Keybinding/Keybinding.cpp
+    src/engine/class/Log/Log.hpp
+    src/engine/class/Log/Log.cpp
+    src/engine/class/LoopKeybinding/LoopKeybinding.hpp
+    src/engine/class/LoopKeybinding/LoopKeybinding.cpp
+    src/engine/class/ProgressBar/ProgressBar.hpp
+    src/engine/class/ProgressBar/ProgressBar.cpp
+    src/engine/class/Window/Window.hpp
+    src/engine/class/Window/Window.cpp
+    src/engine/enum/LogLevel/LogLevel.hpp
 
     # game code
-    src/class/AssetStore/AssetStore.hpp
-    src/class/AssetStore/AssetStore.cpp
     src/class/BoatyMcBoatFace/BoatyMcBoatFace.hpp
     src/class/BoatyMcBoatFace/BoatyMcBoatFace.cpp
-    src/class/Button/Button.hpp
-    src/class/Button/Button.cpp
-    src/class/Controller/Controller.hpp
-    src/class/Controller/Controller.cpp
-    src/class/GameLoop/GameLoop.hpp
-    src/class/GameLoop/GameLoop.cpp
-    src/class/GameState/GameState.hpp
-    src/class/GameState/GameState.cpp
-    src/class/GameStateManager/GameStateManager.hpp
-    src/class/GameStateManager/GameStateManager.cpp
-    src/class/GameStateStore/GameStateStore.hpp
-    src/class/GameStateStore/GameStateStore.cpp
-    src/class/Keybinding/Keybinding.hpp
-    src/class/Keybinding/Keybinding.cpp
     src/class/LoadingState/LoadingState.hpp
     src/class/LoadingState/LoadingState.cpp
-    src/class/Log/Log.hpp
-    src/class/Log/Log.cpp
-    src/class/LoopKeybinding/LoopKeybinding.hpp
-    src/class/LoopKeybinding/LoopKeybinding.cpp
     src/class/MenuState/MenuState.hpp
     src/class/MenuState/MenuState.cpp
     src/class/PlayingState/PlayingState.hpp
     src/class/PlayingState/PlayingState.cpp
-    src/class/ProgressBar/ProgressBar.hpp
-    src/class/ProgressBar/ProgressBar.cpp
-    src/class/Window/Window.hpp
-    src/class/Window/Window.cpp
     src/class/World/World.hpp
     src/class/World/World.cpp
-    src/enum/LogLevel/LogLevel.hpp
 
     # entry point
     src/main.cpp

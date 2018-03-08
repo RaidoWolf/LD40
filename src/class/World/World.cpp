@@ -13,18 +13,18 @@ World::World () {
     m_waterSprite = sf::Sprite(m_waterTexture);
 
     m_blocks = new char[1048576];
+    m_heightMap = new float[1048576];
+    m_zoneMap = new float[1048576];
 
-    m_player = new BoatyMcBoatFace(this);
+    m_player = std::unique_ptr<BoatyMcBoatFace>(new BoatyMcBoatFace(this));
 
     generateTerrain();
 
 }
 
-World::~World () {}
+BoatyMcBoatFace* World::getPlayer () const {
 
-BoatyMcBoatFace* World::getPlayer () {
-
-    return m_player;
+    return m_player.get();
 
 }
 
@@ -33,16 +33,13 @@ void World::generateTerrain () {
     FastNoise fn(static_cast<int>(std::time(nullptr)));
     fn.SetNoiseType(FastNoise::NoiseType::CubicFractal);
 
-    float* heightMap = new float[1048576];
-    float* zoneMap = new float[1048576];
-
     for (unsigned int py = 0; py < 1024; ++py) {
         for (unsigned int px = 0; px < 1024; ++px) {
 
             unsigned int pindex = indexOf(px, py);
 
-            heightMap[pindex] = fn.GetNoise(static_cast<double>(px * 3), static_cast<double>(py * 3));
-            zoneMap[pindex] = fn.GetNoise(static_cast<double>(px * 2), static_cast<double>(py * 2));
+            m_heightMap[pindex] = fn.GetNoise(static_cast<double>(px * 3), static_cast<double>(py * 3));
+            m_zoneMap[pindex] = fn.GetNoise(static_cast<double>(px * 2), static_cast<double>(py * 2));
 
         }
     }
@@ -72,9 +69,9 @@ void World::generateTerrain () {
                 x == 1023
             ) {
 
-                if (zoneMap[index] > 0.1) {
+                if (m_zoneMap[index] > 0.1) {
                     m_blocks[index] = World::Block::Ice;
-                } else if (zoneMap[index] > -0.1) {
+                } else if (m_zoneMap[index] > -0.1) {
                     m_blocks[index] = World::Block::Stone;
                 } else {
                     m_blocks[index] = World::Block::Trees;
@@ -99,13 +96,13 @@ void World::generateTerrain () {
                 }
             }
             float cutoff = static_cast<float>(distanceFromWall) / 4096.0;
-            float height = heightMap[index] - cutoff;
+            float height = m_heightMap[index] - cutoff;
 
             if (height > 0.0) {
 
-                if (zoneMap[index] > 0.1) {
+                if (m_zoneMap[index] > 0.1) {
                     m_blocks[index] = World::Block::Ice;
-                } else if (zoneMap[index] > -0.1) {
+                } else if (m_zoneMap[index] > -0.1) {
                     m_blocks[index] = World::Block::Stone;
                 } else {
                     m_blocks[index] = World::Block::Trees;
@@ -193,7 +190,7 @@ void World::render () {
 
 }
 
-unsigned int World::indexOf (unsigned int x, unsigned int y) {
+unsigned int World::indexOf (unsigned int x, unsigned int y) const {
 
     return y * 1024 + x;
 

@@ -9,8 +9,6 @@ MenuState::MenuState () {
 
 }
 
-MenuState::~MenuState () {}
-
 void MenuState::onActivate () {
 
     Log::verbose("Loading...");
