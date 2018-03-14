@@ -1,6 +1,6 @@
 #include "GameStateStore.hpp"
 
-bool GameStateStore::stateExists (std::string key) {
+bool GameStateStore::stateExists (const std::string& key) {
 
     if (m_stateMap.find(key) == m_stateMap.end()) {
         return false;
@@ -10,7 +10,7 @@ bool GameStateStore::stateExists (std::string key) {
 
 }
 
-std::shared_ptr<GameState> GameStateStore::getState (std::string key) {
+std::shared_ptr<GameState> GameStateStore::getState (const std::string& key) {
 
     if (!stateExists(key)) {
         return nullptr;
@@ -20,18 +20,24 @@ std::shared_ptr<GameState> GameStateStore::getState (std::string key) {
 
 }
 
-bool GameStateStore::registerState (std::string key, GameState* gameState) {
+bool GameStateStore::registerState (const std::string& key, GameState* gameState) {
+
+    return registerState(key, std::shared_ptr<GameState>(gameState));
+
+}
+
+bool GameStateStore::registerState (const std::string& key, std::shared_ptr<GameState> gameState) {
 
     if (stateExists(key)) {
         return false;
     }
 
-    m_stateMap.insert(std::pair<std::string, std::shared_ptr<GameState>>(std::move(key), gameState));
+    m_stateMap.insert(std::pair<std::string, std::shared_ptr<GameState>>(key, gameState));
     return true;
 
 }
 
-void GameStateStore::deleteState (std::string key) {
+void GameStateStore::deleteState (const std::string& key) {
 
     if (!stateExists(key)) {
         return;
@@ -42,4 +48,4 @@ void GameStateStore::deleteState (std::string key) {
 
 }
 
-std::map<std::string, std::shared_ptr<GameState>> GameStateStore::m_stateMap;
+std::unordered_map<std::string, std::shared_ptr<GameState>> GameStateStore::m_stateMap;

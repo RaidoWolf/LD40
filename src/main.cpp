@@ -19,9 +19,9 @@ int main (int argc, const char* argv[]) {
     Log::setFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");
 
-    GameStateStore::registerState("loading", new LoadingState());
-    GameStateStore::registerState("menu", new MenuState());
-    GameStateStore::registerState("playing", new PlayingState());
+    auto loadingState = GameStateStore::createState<LoadingState>("loading");
+    auto menuState = GameStateStore::createState<MenuState>("menu");
+    auto playingState = GameStateStore::createState<PlayingState>("playing");
     GameStateManager::pushState("loading"); // bootstrap
 
     // create game window
