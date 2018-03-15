@@ -13,15 +13,15 @@ BoatyMcBoatFace::BoatyMcBoatFace (World* world) {
 
 void BoatyMcBoatFace::setPosition (float x, float y) {
 
-    m_positionX = std::move(x);
-    m_positionY = std::move(y);
+    m_positionX = x;
+    m_positionY = y;
 
 }
 
 void BoatyMcBoatFace::movePosition (float x, float y) {
 
-    m_positionX += std::move(x);
-    m_positionY += std::move(y);
+    m_positionX += x;
+    m_positionY += y;
 
     m_world->setCamera(m_positionX, m_positionY);
 
@@ -41,37 +41,37 @@ unsigned int BoatyMcBoatFace::getWeight () const {
 
 void BoatyMcBoatFace::setValue (unsigned int value) {
 
-    m_value = std::move(value);
+    m_value = value;
 
 }
 
 void BoatyMcBoatFace::addValue (int value) {
 
-    m_value += std::move(value);
+    m_value += value;
 
 }
 
 void BoatyMcBoatFace::subtractValue (int value) {
 
-    m_value -= std::move(value);
+    m_value -= value;
 
 }
 
 void BoatyMcBoatFace::setWeight (unsigned int weight) {
 
-    m_weight = std::move(weight);
+    m_weight = weight;
 
 }
 
 void BoatyMcBoatFace::addWeight (int weight) {
 
-    m_weight += std::move(weight);
+    m_weight += weight;
 
 }
 
 void BoatyMcBoatFace::subtractWeight (int weight) {
 
-    m_weight -= std::move(weight);
+    m_weight -= weight;
 
 }
 
