@@ -13,3 +13,4 @@ CPackSourceConfig.cmake
 /LD40
 /LD40-*
 /_CPack_Packages
+vgcore.*
