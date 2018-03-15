@@ -33,11 +33,11 @@ void Window::open () {
         return;
     }
 
-    m_context = std::unique_ptr<sf::RenderWindow>(new sf::RenderWindow(
+    m_context = std::make_unique<sf::RenderWindow>(
         sf::VideoMode(m_width, m_height),
         m_title,
         sf::Style::Close | sf::Style::Resize | sf::Style::Titlebar
-    ));
+    );
 
     if (!m_context) {
         Log::error("Failed to create a window.");

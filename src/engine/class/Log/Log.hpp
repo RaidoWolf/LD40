@@ -9,6 +9,7 @@
 #include <mutex>
 #include <exception>
 #include <cstdlib>
+#include <vector>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "../../enum/LogLevel/LogLevel.hpp"
@@ -29,12 +30,44 @@ public:
     static LogLevel getFilterLevel ();
     static void setFilterLevel (LogLevel);
 
-    static void log (std::string, LogLevel = LogLevel::VERBOSE);
+    template<typename ...T>
+    static void log (LogLevel messageType, T&&... message) {
 
-    static void verbose (std::string);
-    static void notice  (std::string);
-    static void warning (std::string);
-    static void error   (std::string);
+        if (messageType == LogLevel::UNDEFINED || messageType >= m_filterLevel) {
+
+            std::string out = Log::formatMessage(messageType, Log::concatMessage(message...));
+
+            if (messageType == LogLevel::ERROR) {
+                std::unique_lock<std::mutex> lock_stderr(Log::mutex_stderr);
+                std::cerr << out << std::endl;
+            } else {
+                std::unique_lock<std::mutex> lock_stdout(Log::mutex_stdout);
+                std::cout << out << std::endl;
+            }
+
+        }
+
+    }
+
+    template<typename ...T>
+    static void verbose (T&&... message) {
+        Log::log(LogLevel::VERBOSE, std::forward<T>(message)...);
+    }
+
+    template<typename ...T>
+    static void notice (T&&... message) {
+        Log::log(LogLevel::NOTICE, std::forward<T>(message)...);
+    }
+
+    template<typename ...T>
+    static void warning (T&&... message) {
+        Log::log(LogLevel::WARNING, std::forward<T>(message)...);
+    }
+
+    template<typename ...T>
+    static void error (T&&... message) {
+        Log::log(LogLevel::ERROR, std::forward<T>(message)...);
+    }
 
     static void bindCallbacks ();
 
@@ -42,7 +75,27 @@ public:
 
 private:
 
-    static std::string formatMessage (std::string, LogLevel = LogLevel::VERBOSE);
+    template<typename Tl, typename ...Tr>
+    static std::string concatMessage (Tl&& messageLeft, Tr&&... messageRight) {
+
+        std::ostringstream oss;
+        oss << messageLeft;
+        oss << concatMessage(messageRight...);
+
+        return oss.str();
+
+    }
+    template<typename T>
+    static std::string concatMessage (T&& message) {
+
+        std::ostringstream oss;
+        oss << message;
+
+        return oss.str();
+
+    }
+
+    static std::string formatMessage (LogLevel, const std::string&);
 
     static LogLevel m_filterLevel;
 

@@ -19,17 +19,17 @@ int main (int argc, const char* argv[]) {
     Log::setFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");
 
-    auto loadingState = GameStateStore::createState<LoadingState>("loading");
-    auto menuState = GameStateStore::createState<MenuState>("menu");
-    auto playingState = GameStateStore::createState<PlayingState>("playing");
-    GameStateManager::pushState("loading"); // bootstrap
-
     // create game window
     Log::verbose("Creating window.");
     Window::setWidth(800);
     Window::setHeight(600);
     Window::setTitle("Ludum Dare 40");
     Window::open();
+
+    auto loadingState = GameStateStore::createState<LoadingState>("loading");
+    auto menuState = GameStateStore::createState<MenuState>("menu");
+    auto playingState = GameStateStore::createState<PlayingState>("playing");
+    GameStateManager::pushState("loading"); // bootstrap
 
     Log::verbose("Starting game loop.");
     GameLoop::setRenderFrameRate(60);

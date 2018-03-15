@@ -8,49 +8,7 @@ LogLevel Log::getFilterLevel () {
 
 void Log::setFilterLevel (LogLevel filterLevel) {
 
-    m_filterLevel = std::move(filterLevel);
-
-}
-
-void Log::log (std::string message, LogLevel messageType) {
-
-    if (messageType == LogLevel::UNDEFINED || messageType >= m_filterLevel) {
-
-        std::string out = Log::formatMessage(std::move(message), messageType);
-
-        if (messageType == LogLevel::ERROR) {
-            std::unique_lock<std::mutex> lock_stderr(Log::mutex_stderr);
-            std::cerr << out << std::endl;
-        } else {
-            std::unique_lock<std::mutex> lock_stdout(Log::mutex_stdout);
-            std::cout << out << std::endl;
-        }
-
-    }
-
-}
-
-void Log::verbose (std::string message) {
-
-    Log::log(std::move(message), LogLevel::VERBOSE);
-
-}
-
-void Log::notice (std::string message) {
-
-    Log::log(std::move(message), LogLevel::NOTICE);
-
-}
-
-void Log::warning (std::string message) {
-
-    Log::log(std::move(message), LogLevel::WARNING);
-
-}
-
-void Log::error (std::string message) {
-
-    Log::log(std::move(message), LogLevel::ERROR);
+    m_filterLevel = filterLevel;
 
 }
 
@@ -67,7 +25,7 @@ void Log::unhandledException () {
 
 }
 
-std::string Log::formatMessage (std::string message, LogLevel messageType) {
+std::string Log::formatMessage (LogLevel messageType, const std::string& message) {
 
     auto time = std::time(nullptr);
     auto localtime = *std::localtime(&time);
@@ -100,7 +58,7 @@ std::string Log::formatMessage (std::string message, LogLevel messageType) {
 
     }
 
-    oss << std::move(message);
+    oss << message;
 
     return oss.str();
 
