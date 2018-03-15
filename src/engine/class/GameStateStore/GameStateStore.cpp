@@ -26,7 +26,7 @@ bool GameStateStore::registerState (const std::string& key, GameState* gameState
 
 }
 
-bool GameStateStore::registerState (const std::string& key, std::shared_ptr<GameState> gameState) {
+bool GameStateStore::registerState (const std::string& key, const std::shared_ptr<GameState>& gameState) {
 
     if (stateExists(key)) {
         return false;

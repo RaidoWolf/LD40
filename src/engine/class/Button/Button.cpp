@@ -4,24 +4,24 @@ Button::Button (
     ButtonCallback& callback,
     Controller& controller,
     std::shared_ptr<sf::Font> font,
-    std::string text,
+    const std::string& text,
     float fontSize,
     float padding,
-    sf::Color backgroundColor,
-    sf::Color foregroundColor,
+    const sf::Color& backgroundColor,
+    const sf::Color& foregroundColor,
     Button::Alignment alignment
 ) :
   m_controller(controller)
 {
 
     setCallback(callback);
-    setFont(std::move(font));
-    setText(std::move(text));
-    setFontSize(std::move(fontSize));
-    setPadding(std::move(padding));
-    setBackgroundColor(std::move(backgroundColor));
-    setForegroundColor(std::move(foregroundColor));
-    setAlignment(std::move(alignment));
+    setFont(font);
+    setText(text);
+    setFontSize(fontSize);
+    setPadding(padding);
+    setBackgroundColor(backgroundColor);
+    setForegroundColor(foregroundColor);
+    setAlignment(alignment);
 
     controller.addMouseButtonPressCallback(
         [this](int button, int x, int y){this->onClick(button, x, y);}
@@ -34,12 +34,12 @@ Button::Button (
 Button::Button (
     ButtonCallback& callback,
     Controller& controller,
-    std::string font,
-    std::string text,
+    const std::string& font,
+    const std::string& text,
     float fontSize,
     float padding,
-    sf::Color backgroundColor,
-    sf::Color foregroundColor,
+    const sf::Color& backgroundColor,
+    const sf::Color& foregroundColor,
     Button::Alignment alignment
 ) :
   m_controller(controller)
@@ -47,12 +47,12 @@ Button::Button (
 
     setCallback(callback);
     setFont(AssetStore::getFont(font));
-    setText(std::move(text));
-    setFontSize(std::move(fontSize));
-    setPadding(std::move(padding));
-    setBackgroundColor(std::move(backgroundColor));
-    setForegroundColor(std::move(foregroundColor));
-    setAlignment(std::move(alignment));
+    setText(text);
+    setFontSize(fontSize);
+    setPadding(padding);
+    setBackgroundColor(backgroundColor);
+    setForegroundColor(foregroundColor);
+    setAlignment(alignment);
 
     controller.addMouseButtonPressCallback(
         [this](int button, int x, int y){this->onClick(button, x, y);}
@@ -140,14 +140,14 @@ void Button::onClick (int button, int x, int y) {
 
 void Button::setPosition (float x, float y) {
 
-    setPositionX(std::move(x));
-    setPositionY(std::move(y));
+    setPositionX(x);
+    setPositionY(y);
 
 }
 
 void Button::setPositionX (float x) {
 
-    m_positionX = std::move(x);
+    m_positionX = x;
 
     updatePositionX();
 
@@ -155,7 +155,7 @@ void Button::setPositionX (float x) {
 
 void Button::setPositionY (float y) {
 
-    m_positionY = std::move(y);
+    m_positionY = y;
 
     updatePositionY();
 
@@ -163,7 +163,7 @@ void Button::setPositionY (float y) {
 
 void Button::setAlignment (Button::Alignment alignment) {
 
-    m_alignment = std::move(alignment);
+    m_alignment = alignment;
 
     updateAlignment();
 
@@ -172,6 +172,12 @@ void Button::setAlignment (Button::Alignment alignment) {
 const Button::ButtonCallback& Button::getCallback () const {
 
     return m_callback;
+
+}
+
+const Controller& Button::getController () const {
+
+    return m_controller;
 
 }
 
@@ -205,17 +211,17 @@ void Button::setCallback (Button::ButtonCallback& callback) {
 
 }
 
-void Button::setFont (std::shared_ptr<sf::Font> font) {
+void Button::setFont (const std::shared_ptr<sf::Font>& font) {
 
-    m_font = std::move(font);
+    m_font = font;
 
     updateFont();
 
 }
 
-void Button::setText (std::string text) {
+void Button::setText (const std::string& text) {
 
-    m_text = std::move(text);
+    m_text = text;
 
     updateText();
 
@@ -227,7 +233,7 @@ void Button::setFontSize (float size) {
         size = 0.0;
     }
 
-    m_fontSize = std::move(size);
+    m_fontSize = size;
 
     updateFontSize();
 
@@ -239,23 +245,23 @@ void Button::setPadding (float padding) {
         padding = 0.0;
     }
 
-    m_padding = std::move(padding);
+    m_padding = padding;
 
     updatePadding();
 
 }
 
-void Button::setBackgroundColor (sf::Color color) {
+void Button::setBackgroundColor (const sf::Color& color) {
 
-    m_backgroundColor = std::move(color);
+    m_backgroundColor = color;
 
     updateBackgroundColor();
 
 }
 
-void Button::setForegroundColor (sf::Color color) {
+void Button::setForegroundColor (const sf::Color& color) {
 
-    m_foregroundColor = std::move(color);
+    m_foregroundColor = color;
 
     updateBackgroundColor();
 

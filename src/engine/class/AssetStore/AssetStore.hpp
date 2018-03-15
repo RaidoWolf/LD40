@@ -27,14 +27,15 @@ public:
     // image setters
     template<typename ...T>
     static std::shared_ptr<sf::Image> createImage (const std::string& key, T&&... args) {
-        if (registerImage(key, std::make_shared<sf::Image>(std::forward<T>(args)...))) {
-            return getImage(key);
+        auto image = std::make_shared<sf::Image>(std::forward<T>(args)...);
+        if (registerImage(key, image)) {
+            return image;
         } else {
             return nullptr;
         }
     }
     static bool registerImage (const std::string&, sf::Image*);
-    static bool registerImage (const std::string&, std::shared_ptr<sf::Image>);
+    static bool registerImage (const std::string&, const std::shared_ptr<sf::Image>&);
     static void deleteImage (const std::string&);
 
     // sound getters
@@ -44,14 +45,15 @@ public:
     // sound setters
     template<typename ...T>
     static std::shared_ptr<sf::Sound> createSound (const std::string& key, T&&... args) {
-        if (registerSound(key, std::make_shared<sf::Sound>(std::forward(args)...))) {
-            return getSound(key);
+        auto sound = std::make_shared<sf::Sound>(std::forward(args)...);
+        if (registerSound(key, sound)) {
+            return sound;
         } else {
             return nullptr;
         }
     }
     static bool registerSound (const std::string&, sf::Sound*);
-    static bool registerSound (const std::string&, std::shared_ptr<sf::Sound>);
+    static bool registerSound (const std::string&, const std::shared_ptr<sf::Sound>&);
     static void deleteSound (const std::string&);
 
     // font getters
@@ -61,14 +63,15 @@ public:
     // font setters
     template<typename ...T>
     static std::shared_ptr<sf::Font> createFont (const std::string& key, T&&... args) {
-        if (registerFont(key, std::make_shared<sf::Font>(std::forward(args)...))) {
-            return getFont(key);
+        auto font = std::make_shared<sf::Font>(std::forward(args)...);
+        if (registerFont(key, font)) {
+            return font;
         } else {
             return nullptr;
         }
     }
     static bool registerFont (const std::string&, sf::Font*);
-    static bool registerFont (const std::string&, std::shared_ptr<sf::Font>);
+    static bool registerFont (const std::string&, const std::shared_ptr<sf::Font>&);
     static void deleteFont (const std::string&);
 
 private:

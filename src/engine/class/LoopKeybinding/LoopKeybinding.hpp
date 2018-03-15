@@ -9,10 +9,10 @@ class LoopKeybinding {
 
 public:
 
-    typedef std::function < void () > LoopKeybindingCallback;
+    typedef std::function<void()> LoopKeybindingCallback;
 
-    LoopKeybinding (LoopKeybindingCallback, sf::Keyboard::Key);
-    LoopKeybinding (LoopKeybindingCallback, std::vector<sf::Keyboard::Key>&);
+    LoopKeybinding (const LoopKeybindingCallback&, sf::Keyboard::Key);
+    LoopKeybinding (const LoopKeybindingCallback&, const std::vector<sf::Keyboard::Key>&);
     ~ LoopKeybinding () = default;
 
     LoopKeybinding (LoopKeybinding&&) = default;
@@ -27,8 +27,8 @@ public:
     const LoopKeybindingCallback& getCallback () const;
     std::vector<sf::Keyboard::Key> getKeys () const;
 
-    void setCallback (LoopKeybindingCallback);
-    void setKeys (std::vector<sf::Keyboard::Key>);
+    void setCallback (const LoopKeybindingCallback&);
+    void setKeys (const std::vector<sf::Keyboard::Key>&);
 
 private:
 

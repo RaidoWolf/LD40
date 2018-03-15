@@ -1,7 +1,7 @@
 #include "Keybinding.hpp"
 
 Keybinding::Keybinding (
-    KeybindingCallback callback,
+    const KeybindingCallback& callback,
     bool action,
     sf::Keyboard::Key key,
     bool alt,
@@ -76,38 +76,38 @@ bool Keybinding::getShift () const {
 
 }
 
-void Keybinding::setCallback (KeybindingCallback& callback) {
+void Keybinding::setCallback (const KeybindingCallback& callback) {
 
-    m_callback = std::move(callback);
+    m_callback = callback;
 
 }
 
 void Keybinding::setAction (bool action) {
 
-    m_action = std::move(action);
+    m_action = action;
 
 }
 
 void Keybinding::setKey (sf::Keyboard::Key key) {
 
-    m_key = std::move(key);
+    m_key = key;
 
 }
 
 void Keybinding::setAlt (bool alt) {
 
-    m_alt = std::move(alt);
+    m_alt = alt;
 
 }
 
 void Keybinding::setControl (bool control) {
 
-    m_control = std::move(control);
+    m_control = control;
 
 }
 
 void Keybinding::setShift (bool shift) {
 
-    m_shift = std::move(shift);
+    m_shift = shift;
 
 }

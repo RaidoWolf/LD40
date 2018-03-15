@@ -26,7 +26,7 @@ bool AssetStore::registerImage (const std::string& key, sf::Image* image) {
 
 }
 
-bool AssetStore::registerImage (const std::string& key, std::shared_ptr<sf::Image> image) {
+bool AssetStore::registerImage (const std::string& key, const std::shared_ptr<sf::Image>& image) {
 
     if (imageExists(key)) {
         return false;
@@ -74,7 +74,7 @@ bool AssetStore::registerSound (const std::string& key, sf::Sound* sound) {
 
 }
 
-bool AssetStore::registerSound (const std::string& key, std::shared_ptr<sf::Sound> sound) {
+bool AssetStore::registerSound (const std::string& key, const std::shared_ptr<sf::Sound>& sound) {
 
     if (soundExists(key)) {
         return false;
@@ -122,7 +122,7 @@ bool AssetStore::registerFont (const std::string& key, sf::Font* font) {
 
 }
 
-bool AssetStore::registerFont (const std::string& key, std::shared_ptr<sf::Font> font) {
+bool AssetStore::registerFont (const std::string& key, const std::shared_ptr<sf::Font>& font) {
 
     if (fontExists(key)) {
         return false;

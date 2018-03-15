@@ -90,13 +90,13 @@ void Window::clear () {
 
 }
 
-void Window::clear (sf::Color color) {
+void Window::clear (const sf::Color& color) {
 
     if (!Window::exists()) {
         Log::warning("Cannot clear window because it is not open.");
     }
 
-    m_context->clear(std::move(color));
+    m_context->clear(color);
 
 }
 
@@ -122,7 +122,7 @@ void Window::setWidth (int width) {
 
     std::unique_lock<std::mutex> lock_size(mutex_size);
 
-    m_width = std::move(width);
+    m_width = width;
     pushWindowSize();
 
 }
@@ -131,7 +131,7 @@ void Window::setHeight (int height) {
 
     std::unique_lock<std::mutex> lock_size(mutex_size);
 
-    m_height = std::move(height);
+    m_height = height;
     pushWindowSize();
 
 }
@@ -140,8 +140,8 @@ void Window::setSize (int width, int height) {
 
     std::unique_lock<std::mutex> lock_size(mutex_size);
 
-    m_width = std::move(width);
-    m_height = std::move(height);
+    m_width = width;
+    m_height = height;
     pushWindowSize();
 
 }
@@ -152,11 +152,11 @@ std::string Window::getTitle () {
 
 }
 
-void Window::setTitle (std::string title) {
+void Window::setTitle (const std::string& title) {
 
     std::unique_lock<std::mutex> lock_title(mutex_title);
 
-    m_title = std::move(title);
+    m_title = title;
     pushWindowTitle();
 
 }

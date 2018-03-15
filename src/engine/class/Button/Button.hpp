@@ -31,22 +31,22 @@ public:
         ButtonCallback&,
         Controller&,
         std::shared_ptr<sf::Font>,
-        std::string,
+        const std::string&,
         float fontSize = 32.0,
         float padding = 10.0,
-        sf::Color backgroundColor = sf::Color(0, 0, 0, 0),
-        sf::Color foregroundColor = sf::Color(0, 0, 0, 255),
+        const sf::Color& backgroundColor = sf::Color(0, 0, 0, 0),
+        const sf::Color& foregroundColor = sf::Color(0, 0, 0, 255),
         Button::Alignment alignment = Button::Alignment::Center
     );
     Button (
         ButtonCallback&,
         Controller&,
-        std::string,
-        std::string,
+        const std::string&,
+        const std::string&,
         float fontSize = 32.0,
         float padding = 10.0,
-        sf::Color backgroundColor = sf::Color(0, 0, 0, 0),
-        sf::Color foregroundColor = sf::Color(0, 0, 0, 255),
+        const sf::Color& backgroundColor = sf::Color(0, 0, 0, 0),
+        const sf::Color& foregroundColor = sf::Color(0, 0, 0, 255),
         Button::Alignment alignment = Button::Alignment::Center
     );
     ~Button () = default;
@@ -67,18 +67,19 @@ public:
     void setAlignment (Button::Alignment);
 
     const ButtonCallback& getCallback () const;
+    const Controller& getController () const;
     std::shared_ptr<sf::Font> getFont () const;
     std::string getText () const;
     sf::Color getBackgroundColor () const;
     sf::Color getForegroundColor () const;
 
     void setCallback (ButtonCallback&);
-    void setFont (std::shared_ptr<sf::Font>);
-    void setText (std::string);
+    void setFont (const std::shared_ptr<sf::Font>&);
+    void setText (const std::string&);
     void setFontSize (float);
     void setPadding (float);
-    void setBackgroundColor (sf::Color);
-    void setForegroundColor (sf::Color);
+    void setBackgroundColor (const sf::Color&);
+    void setForegroundColor (const sf::Color&);
 
 private:
 

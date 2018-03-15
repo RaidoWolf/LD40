@@ -53,33 +53,33 @@ public:
     std::vector<Keybinding> getKeybindings () const;
     std::vector<LoopKeybinding> getLoopKeybindings () const;
 
-    void setKeybindings (std::vector<Keybinding>);
-    void addKeybinding (Keybinding);
+    void setKeybindings (const std::vector<Keybinding>&);
+    void addKeybinding (const Keybinding&);
     void clearKeybindings ();
-    void setLoopKeybindings (std::vector<LoopKeybinding>);
-    void addLoopKeybinding (LoopKeybinding);
+    void setLoopKeybindings (const std::vector<LoopKeybinding>&);
+    void addLoopKeybinding (const LoopKeybinding&);
     void clearLoopKeybindings ();
-    void addTextCallback (TextCallback);
+    void addTextCallback (const TextCallback&);
     void clearTextCallbacks ();
-    void addCursorCallback (CursorCallback);
+    void addCursorCallback (const CursorCallback&);
     void clearCursorCallbacks ();
-    void addCursorInCallback (CursorInCallback);
+    void addCursorInCallback (const CursorInCallback&);
     void clearCursorInCallbacks ();
-    void addCursorOutCallback (CursorOutCallback);
+    void addCursorOutCallback (const CursorOutCallback&);
     void clearCursorOutCallbacks ();
-    void addFocusCallback (FocusCallback);
+    void addFocusCallback (const FocusCallback&);
     void clearFocusCallbacks ();
-    void addUnfocusCallback (UnfocusCallback);
+    void addUnfocusCallback (const UnfocusCallback&);
     void clearUnfocusCallbacks();
-    void addMouseButtonPressCallback (MouseButtonPressCallback);
+    void addMouseButtonPressCallback (const MouseButtonPressCallback&);
     void clearMouseButtonPressCallbacks ();
-    void addMouseButtonReleaseCallback (MouseButtonReleaseCallback);
+    void addMouseButtonReleaseCallback (const MouseButtonReleaseCallback&);
     void clearMouseButtonReleaseCallbacks ();
-    void addLoopMouseButtonCallback (LoopMouseButtonCallback);
+    void addLoopMouseButtonCallback (const LoopMouseButtonCallback&);
     void clearLoopMouseButtonCallbacks ();
-    void addScrollCallback (ScrollCallback);
+    void addScrollCallback (const ScrollCallback&);
     void clearScrollCallbacks ();
-    void addResizeCallback (ResizeCallback);
+    void addResizeCallback (const ResizeCallback&);
     void clearResizeCallbacks ();
 
 private:

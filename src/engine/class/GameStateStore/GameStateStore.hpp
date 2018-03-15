@@ -26,14 +26,15 @@ public:
     // state setters
     template<typename TState, typename ...TArg>
     static std::shared_ptr<GameState> createState (const std::string& key, TArg&&... args) {
-        if (registerState(key, std::make_shared<TState>(std::forward<TArg>(args)...))) {
-            return getState(key);
+        auto state = std::make_shared<TState>(std::forward<TArg>(args)...);
+        if (registerState(key, state)) {
+            return state;
         } else {
             return nullptr;
         }
     }
     static bool registerState (const std::string&, GameState*);
-    static bool registerState (const std::string&, std::shared_ptr<GameState>);
+    static bool registerState (const std::string&, const std::shared_ptr<GameState>&);
     static void deleteState (const std::string&);
 
 private:

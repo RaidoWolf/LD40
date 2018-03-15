@@ -16,8 +16,8 @@ public:
         float positionY = 0,
         float originX = 0,
         float originY = 0,
-        sf::Color = sf::Color(0, 0, 0, 255),
-        sf::Color = sf::Color(255, 255, 255, 255)
+        const sf::Color& = sf::Color(0, 0, 0, 255),
+        const sf::Color& = sf::Color(255, 255, 255, 255)
     );
     ~ProgressBar ();
 
@@ -45,8 +45,8 @@ public:
     void setWidth (float);
     void setHeight (float);
     void setPadding (float);
-    void setBackgroundColor (sf::Color);
-    void setForegroundColor (sf::Color);
+    void setBackgroundColor (const sf::Color&);
+    void setForegroundColor (const sf::Color&);
 
 private:
 

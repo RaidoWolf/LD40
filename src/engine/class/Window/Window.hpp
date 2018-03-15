@@ -46,7 +46,7 @@ public:
         const sf::RenderStates& states = sf::RenderStates::Default
     );
     static void clear ();
-    static void clear (sf::Color);
+    static void clear (const sf::Color&);
     static bool pollEvent (sf::Event&);
 
     static int getWidth ();
@@ -56,7 +56,7 @@ public:
     static void setSize (int, int);
 
     static std::string getTitle ();
-    static void setTitle (std::string);
+    static void setTitle (const std::string&);
 
     static void setKeyCallback ();
 

@@ -1,6 +1,6 @@
 #include "GameStateManager.hpp"
 
-void GameStateManager::pushState (std::shared_ptr<GameState> state) {
+void GameStateManager::pushState (const std::shared_ptr<GameState>& state) {
 
     m_states.push_back(state);
     state->onPush();
@@ -25,7 +25,7 @@ void GameStateManager::pushState (GameState* state) {
 
 }
 
-bool GameStateManager::pushState (std::string key) {
+bool GameStateManager::pushState (const std::string& key) {
 
     if (!GameStateStore::stateExists(key)) {
         return false;
@@ -151,7 +151,7 @@ void GameStateManager::clearWindow () {
 void GameStateManager::render (double deltaTime) {
 
     for (int i = 0; i < m_statesLiveRender.size(); ++i) {
-        m_statesLiveRender[i]->render(std::move(deltaTime));
+        m_statesLiveRender[i]->render(deltaTime);
     }
 
 }

@@ -11,7 +11,7 @@ public:
 
     typedef std::function<void()> KeybindingCallback;
 
-    Keybinding (KeybindingCallback, bool, sf::Keyboard::Key, bool, bool, bool);
+    Keybinding (const KeybindingCallback&, bool, sf::Keyboard::Key, bool, bool, bool);
     ~Keybinding () = default;
 
     Keybinding (Keybinding&&) = default;
@@ -30,7 +30,7 @@ public:
     bool getControl () const;
     bool getShift () const;
 
-    void setCallback (KeybindingCallback&);
+    void setCallback (const KeybindingCallback&);
     void setAction (bool);
     void setKey (sf::Keyboard::Key);
     void setAlt (bool);

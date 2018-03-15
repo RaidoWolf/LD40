@@ -15,14 +15,14 @@ unsigned int GameLoop::getUpdateTickRate () {
 void GameLoop::setRenderFrameRate (unsigned int framesPerSecond) {
 
     m_renderSeconds = 1.0 / framesPerSecond;
-    m_renderFrameRate = std::move(framesPerSecond);
+    m_renderFrameRate = framesPerSecond;
 
 }
 
 void GameLoop::setUpdateTickRate (unsigned int ticksPerSecond) {
 
     m_updateSeconds = 1.0 / ticksPerSecond;
-    m_updateTickRate = std::move(ticksPerSecond);
+    m_updateTickRate = ticksPerSecond;
 
 }
 
@@ -192,7 +192,7 @@ bool GameLoop::isRunning () {
 
 void GameLoop::render (double deltaTime) {
 
-    GameStateManager::render(std::move(deltaTime));
+    GameStateManager::render(deltaTime);
 
 }
 

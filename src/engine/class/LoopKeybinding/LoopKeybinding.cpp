@@ -1,7 +1,7 @@
 #include "LoopKeybinding.hpp"
 
 LoopKeybinding::LoopKeybinding (
-    LoopKeybindingCallback callback,
+    const LoopKeybindingCallback& callback,
     sf::Keyboard::Key key
 ) :
   m_callback(callback),
@@ -9,8 +9,8 @@ LoopKeybinding::LoopKeybinding (
 {}
 
 LoopKeybinding::LoopKeybinding (
-    LoopKeybindingCallback callback,
-    std::vector<sf::Keyboard::Key>& keys
+    const LoopKeybindingCallback& callback,
+    const std::vector<sf::Keyboard::Key>& keys
 ) :
   m_callback(callback),
   m_keys(keys)
@@ -57,14 +57,14 @@ std::vector<sf::Keyboard::Key> LoopKeybinding::getKeys () const {
 
 }
 
-void LoopKeybinding::setCallback (LoopKeybindingCallback callback) {
+void LoopKeybinding::setCallback (const LoopKeybindingCallback& callback) {
 
-    m_callback = std::move(callback);
+    m_callback = callback;
 
 }
 
-void LoopKeybinding::setKeys (std::vector<sf::Keyboard::Key> keys) {
+void LoopKeybinding::setKeys (const std::vector<sf::Keyboard::Key>& keys) {
 
-    m_keys = std::move(keys);
+    m_keys = keys;
 
 }
