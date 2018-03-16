@@ -77,7 +77,7 @@ private:
     static std::string concatMessage (Tl&& messageLeft, Tr&&... messageRight) {
 
         std::ostringstream oss;
-        oss << messageLeft;
+        oss << std::forward<Tl>(messageLeft);
         oss << concatMessage(std::forward<Tr>(messageRight)...);
 
         return oss.str();
