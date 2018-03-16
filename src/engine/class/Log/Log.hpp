@@ -33,7 +33,7 @@ public:
 
         if (messageType == LogLevel::UNDEFINED || messageType >= m_filterLevel) {
 
-            std::string out = Log::formatMessage(messageType, Log::concatMessage(message...));
+            std::string out = Log::formatMessage(messageType, Log::concatMessage(std::forward<T>(message)...));
 
             if (messageType == LogLevel::ERROR) {
                 std::unique_lock<std::mutex> lock_stderr(Log::mutex_stderr);
