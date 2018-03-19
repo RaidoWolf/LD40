@@ -73,22 +73,11 @@ public:
 
 private:
 
-    template<typename Tl, typename ...Tr>
-    static std::string concatMessage (Tl&& messageLeft, Tr&&... messageRight) {
+    template<typename ...T>
+    static std::string concatMessage (T&&... message) {
 
         std::ostringstream oss;
-        oss << std::forward<Tl>(messageLeft);
-        oss << concatMessage(std::forward<Tr>(messageRight)...);
-
-        return oss.str();
-
-    }
-    template<typename T>
-    static std::string concatMessage (T&& message) {
-
-        std::ostringstream oss;
-        oss << std::forward<T>(message);
-
+        (oss << ... << std::forward<T>(message));
         return oss.str();
 
     }
