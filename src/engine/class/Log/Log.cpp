@@ -12,7 +12,7 @@ void Log::setFilterLevel (LogLevel filterLevel) {
 
 }
 
-void Log::bindCallbacks () {
+void Log::bindUnhandledException () {
 
     std::set_terminate(unhandledException);
 

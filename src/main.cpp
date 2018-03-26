@@ -14,7 +14,7 @@
 
 int main (int argc, const char* argv[]) {
 
-    Log::bindCallbacks();
+    Log::bindUnhandledException();
 
     Log::setFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");

@@ -9,7 +9,6 @@
 #include <mutex>
 #include <exception>
 #include <cstdlib>
-#include <vector>
 #include "../../enum/LogLevel/LogLevel.hpp"
 
 class Log {
@@ -67,8 +66,7 @@ public:
         Log::log(LogLevel::ERROR, std::forward<T>(message)...);
     }
 
-    static void bindCallbacks ();
-
+    static void bindUnhandledException ();
     static void unhandledException ();
 
 private:
