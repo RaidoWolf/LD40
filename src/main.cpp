@@ -14,9 +14,16 @@
 
 int main (int argc, const char* argv[]) {
 
+    // log unhandled exceptions
     Log::bindUnhandledException();
 
-    Log::setFilterLevel(LogLevel::VERBOSE);
+    // configure log file
+    Log::openFile("./log.txt");
+    Log::enableFileOutput();
+
+    // set the log filter level
+    Log::setCliFilterLevel(LogLevel::VERBOSE);
+    Log::setFileFilterLevel(LogLevel::VERBOSE);
     Log::verbose("Starting LD40 game!");
 
     // create game window
@@ -37,6 +44,7 @@ int main (int argc, const char* argv[]) {
     GameLoop::run();
 
     Log::verbose("Exiting. Thanks for playing!");
+    Log::closeFile();
     exit(EXIT_SUCCESS);
     return 0;
 

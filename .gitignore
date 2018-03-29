@@ -14,3 +14,4 @@ CPackSourceConfig.cmake
 /LD40-*
 /_CPack_Packages
 vgcore.*
+/log.txt
