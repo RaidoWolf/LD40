@@ -15,12 +15,14 @@ public:
     static const bool transparentInput = false;
 
     // constructor and destructor
-    GameState ();
+    GameState () = delete;
     virtual ~GameState () = default;
 
+    // move operations (implement these in derived classes)
     GameState (GameState&&) = delete;
     GameState& operator = (GameState&&) = delete;
 
+    // copy operations (implement these in derived classes)
     GameState (const GameState&) = delete;
     GameState& operator = (const GameState&) = delete;
 
@@ -45,8 +47,8 @@ public:
 protected:
 
     Controller m_controller;
-    bool m_clearWindow = false;
-    sf::Color m_clearColor = sf::Color(0, 0, 0, 255);
+    bool m_clearWindow {false};
+    sf::Color m_clearColor {0, 0, 0, 255};
 
 };
 

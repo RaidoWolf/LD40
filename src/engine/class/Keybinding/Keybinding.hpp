@@ -9,7 +9,7 @@ class Keybinding {
 
 public:
 
-    typedef std::function<void()> KeybindingCallback;
+    typedef std::function <void()> KeybindingCallback;
 
     Keybinding (const KeybindingCallback&, bool, sf::Keyboard::Key, bool, bool, bool);
     ~Keybinding () = default;
@@ -20,7 +20,7 @@ public:
     Keybinding (const Keybinding&) = default;
     Keybinding& operator = (const Keybinding&) = default;
 
-    bool check (bool, sf::Keyboard::Key, bool, bool, bool);
+    bool check (bool, sf::Keyboard::Key, bool, bool, bool) const;
     void process (bool, sf::Keyboard::Key, bool, bool, bool);
 
     const KeybindingCallback& getCallback () const;

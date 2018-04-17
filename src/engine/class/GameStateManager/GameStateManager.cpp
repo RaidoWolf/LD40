@@ -7,7 +7,7 @@ void GameStateManager::pushState (const std::shared_ptr<GameState>& state) {
     state->onActivate();
 
     if (m_states.size() > 1) {
-        std::shared_ptr<GameState> prev = m_states[m_states.size() - 2];
+        auto prev = m_states[m_states.size() - 2];
         prev->onDeactivate();
         for (int i = m_states.size() - 2; i >= 0; --i) {
             m_states[i]->onDescend();
@@ -104,7 +104,7 @@ void GameStateManager::refreshLiveStates () {
 
         for (int i = m_states.size() - 2; i >= 0; --i) {
 
-            std::shared_ptr<GameState> cur = m_states[i];
+            auto cur = m_states[i];
 
             if (renderBroken && updateBroken && inputBroken) {
                 break;
