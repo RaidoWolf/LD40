@@ -1,4 +1,4 @@
-#include "MenuState.hpp"
+#include "../include/MenuState.hpp"
 
 MenuState::MenuState () {
 
@@ -11,26 +11,18 @@ MenuState::MenuState () {
 
 void MenuState::onActivate () {
 
-    Log::verbose("Loading...");
+    aw::Log::verbose("menustate", "Launching Menu.");
 
-    m_titleTexture.loadFromImage(*AssetStore::getImage("title"));
+    m_titleTexture.loadFromImage(*aw::AssetStore::getImage("title"));
     m_titleSprite = sf::Sprite(m_titleTexture);
     m_titleSprite.setOrigin(128.0, 32.0);
     m_titleSprite.setPosition(400.0, 180.0);
 
 }
 
-void MenuState::onDeactivate () {
+void MenuState::onDeactivate () {}
 
-    Log::verbose("Loading complete!");
-
-}
-
-void MenuState::onPush () {
-
-    Log::verbose("Loading state pushed.");
-
-}
+void MenuState::onPush () {}
 
 void MenuState::onPop () {}
 
@@ -40,7 +32,7 @@ void MenuState::onDescend () {}
 
 void MenuState::render (double deltaTime) {
 
-    Window::draw(m_titleSprite);
+    aw::Window::draw(m_titleSprite);
     m_startButton.render();
 
 }
@@ -49,6 +41,6 @@ void MenuState::update () {}
 
 void MenuState::startGame () {
 
-    GameStateManager::pushState("playing");
+    aw::GameStateManager::pushState("playing");
 
 }

@@ -1,51 +1,60 @@
 #include <iostream>
 #include <string>
+#include <exception>
+#include <stdexcept>
 #include <SFML/Graphics.hpp>
-#include "engine/class/Log/Log.hpp"
-#include "engine/enum/LogLevel/LogLevel.hpp"
-#include "engine/class/Window/Window.hpp"
-#include "engine/class/GameStateManager/GameStateManager.hpp"
-#include "engine/class/GameStateStore/GameStateStore.hpp"
-#include "engine/class/GameLoop/GameLoop.hpp"
-#include "class/LoadingState/LoadingState.hpp"
-#include "class/MenuState/MenuState.hpp"
-#include "class/PlayingState/PlayingState.hpp"
-#include "config.h"
+#include <ArcticWolf/Log.hpp>
+#include <ArcticWolf/LogLevel.hpp>
+#include <ArcticWolf/ConsoleLogObserver.hpp>
+#include <ArcticWolf/FileLogObserver.hpp>
+#include <ArcticWolf/Window.hpp>
+#include <ArcticWolf/GameStateManager.hpp>
+#include <ArcticWolf/GameStateStore.hpp>
+#include <ArcticWolf/GameLoop.hpp>
+#include "../include/LoadingState.hpp"
+#include "../include/MenuState.hpp"
+#include "../include/PlayingState.hpp"
+#include "../include/config.h"
 
 int main (int argc, const char* argv[]) {
 
-    // log unhandled exceptions
-    Log::bindUnhandledException();
+    try {
 
-    // configure log file
-    Log::openFile("./log.txt");
-    Log::enableFileOutput();
+        // log unhandled exceptions
+        aw::Log::bindUnhandledException();
 
-    // set the log filter level
-    Log::setCliFilterLevel(LogLevel::VERBOSE);
-    Log::setFileFilterLevel(LogLevel::VERBOSE);
-    Log::verbose("Starting LD40 game!");
+        // configure log observers
+        aw::Log::makeObserver<aw::ConsoleLogObserver>();
+        aw::Log::makeObserver<aw::FileLogObserver>("./log.txt");
 
-    // create game window
-    Log::verbose("Creating window.");
-    Window::setWidth(800);
-    Window::setHeight(600);
-    Window::setTitle("Ludum Dare 40");
-    Window::open();
+        // set the log filter level
+        aw::Log::verbose("main", "Starting LD40 game!");
 
-    auto loadingState = GameStateStore::createState<LoadingState>("loading");
-    auto menuState = GameStateStore::createState<MenuState>("menu");
-    auto playingState = GameStateStore::createState<PlayingState>("playing");
-    GameStateManager::pushState("loading"); // bootstrap
+        // create game window
+        aw::Log::verbose("main", "Creating window.");
+        aw::Window::setWidth(800);
+        aw::Window::setHeight(600);
+        aw::Window::setTitle("Ludum Dare 40");
+        aw::Window::open();
 
-    Log::verbose("Starting game loop.");
-    GameLoop::setRenderFrameRate(60);
-    GameLoop::setUpdateTickRate(60);
-    GameLoop::run();
+        aw::GameStateStore::makeState<LoadingState>("loading");
+        aw::GameStateStore::makeState<MenuState>("menu");
+        aw::GameStateStore::makeState<PlayingState>("playing");
+        aw::GameStateManager::pushState("loading"); // bootstrap
 
-    Log::verbose("Exiting. Thanks for playing!");
-    Log::closeFile();
-    exit(EXIT_SUCCESS);
-    return 0;
+        aw::Log::verbose("main", "Starting game loop.");
+        aw::GameLoop::setRenderFrameRate(60);
+        aw::GameLoop::setUpdateTickRate(60);
+        aw::GameLoop::run();
+
+        aw::Log::verbose("main", "Exiting. Thanks for playing!");
+        exit(EXIT_SUCCESS);
+        return 0;
+
+    } catch (const std::exception& e) {
+
+        aw::Log::error("exception", "Uncaught exception: ", e.what());
+
+    }
 
 }

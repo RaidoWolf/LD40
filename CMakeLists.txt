@@ -8,67 +8,59 @@ endif ()
 # notify of the build type in use
 message (STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
 
-# project
-project (LD40)
+# project definition
 set (LD40_VERSION_MAJOR 0)
 set (LD40_VERSION_MINOR 0)
+set (LD40_VERSION_PATCH 0)
+project (
+    LD40
+    VERSION ${LD40_VERSION_MAJOR}.${LD40_VERSION_MINOR}.${LD40_VERSION_PATCH}
+    DESCRIPTION "Speed Fishing - Ludum Dare 40 game by Alexander Barber"
+)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
 set (CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
-set (CMAKE_CXX_FLAGS_DEBUG "-g")
+set (CMAKE_CXX_FLAGS_DEBUG "-g -Og")
 set (CMAKE_CXX_FLAGS_RELEASE "-O3")
 configure_file (
-    "${PROJECT_SOURCE_DIR}/src/config.h.in"
-    "${PROJECT_BINARY_DIR}/src/config.h"
+    ${PROJECT_SOURCE_DIR}/include/config.h.in
+    ${PROJECT_BINARY_DIR}/include/config.h
 )
-include_directories ("${PROJECT_BINARY_DIR}")
+include_directories (
+    ${PROJECT_SOURCE_DIR}
+    ${PROJECT_BINARY_DIR}
+)
+
+# debug mode testing/analysis
+unset (CMAKE_CXX_CPPCHECK CACHE)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message (STATUS "Testing/Analysis Enabled")
+    find_program (CMAKE_CXX_CPPCHECK NAMES cppcheck)
+    if (CMAKE_CXX_CPPCHECK)
+        list (APPEND CMAKE_CXX_CPPCHECK
+            "--enable=warning"
+            "--inconclusive"
+            "--force"
+            "--inline-suppr"
+        )
+    else ()
+        message (WARNING "Could not find CPPCheck executable. CPPCheck testing disabled.")
+    endif ()
+else ()
+    message (STATUS "Testing/Analysis Disabled")
+    set (CMAKE_CXX_CPPCHECK)
+endif ()
 
 # sources list
 list (APPEND SOURCES
 
-    # engine library code
-    src/engine/lib/FastNoise/FastNoise.h
-    src/engine/lib/FastNoise/FastNoise.cpp
-
-    # engine code
-    src/engine/class/AssetStore/AssetStore.hpp
-    src/engine/class/AssetStore/AssetStore.cpp
-    src/engine/class/Button/Button.hpp
-    src/engine/class/Button/Button.cpp
-    src/engine/class/Controller/Controller.hpp
-    src/engine/class/Controller/Controller.cpp
-    src/engine/class/GameLoop/GameLoop.hpp
-    src/engine/class/GameLoop/GameLoop.cpp
-    src/engine/class/GameState/GameState.hpp
-    src/engine/class/GameState/GameState.cpp
-    src/engine/class/GameStateManager/GameStateManager.hpp
-    src/engine/class/GameStateManager/GameStateManager.cpp
-    src/engine/class/GameStateStore/GameStateStore.hpp
-    src/engine/class/GameStateStore/GameStateStore.cpp
-    src/engine/class/Keybinding/Keybinding.hpp
-    src/engine/class/Keybinding/Keybinding.cpp
-    src/engine/class/Log/Log.hpp
-    src/engine/class/Log/Log.cpp
-    src/engine/class/LoopKeybinding/LoopKeybinding.hpp
-    src/engine/class/LoopKeybinding/LoopKeybinding.cpp
-    src/engine/class/ProgressBar/ProgressBar.hpp
-    src/engine/class/ProgressBar/ProgressBar.cpp
-    src/engine/class/Window/Window.hpp
-    src/engine/class/Window/Window.cpp
-    src/engine/enum/LogLevel/LogLevel.hpp
-
     # game code
-    src/class/BoatyMcBoatFace/BoatyMcBoatFace.hpp
-    src/class/BoatyMcBoatFace/BoatyMcBoatFace.cpp
-    src/class/LoadingState/LoadingState.hpp
-    src/class/LoadingState/LoadingState.cpp
-    src/class/MenuState/MenuState.hpp
-    src/class/MenuState/MenuState.cpp
-    src/class/PlayingState/PlayingState.hpp
-    src/class/PlayingState/PlayingState.cpp
-    src/class/World/World.hpp
-    src/class/World/World.cpp
+    src/BoatyMcBoatFace.cpp
+    src/LoadingState.cpp
+    src/MenuState.cpp
+    src/PlayingState.cpp
+    src/World.cpp
 
     # entry point
     src/main.cpp
@@ -83,11 +75,8 @@ add_executable (${EXECUTABLE_NAME} ${SOURCES})
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
 # dependencies
-find_package (SFML 2 REQUIRED audio graphics window system)
-if (SFML_FOUND)
-    include_directories (${SFML_INCLUDE_DIR})
-    target_link_libraries (${EXECUTABLE_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-endif ()
+find_package (ArcticWolf)
+target_link_libraries (${EXECUTABLE_NAME} ArcticWolf)
 
 # installation
 install (TARGETS ${EXECUTABLE_NAME} DESTINATION bin)

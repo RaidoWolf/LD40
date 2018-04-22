@@ -3,8 +3,8 @@
 
 #include <math.h>
 #include <SFML/Graphics.hpp>
-#include "../../engine/class/AssetStore/AssetStore.hpp"
-#include "../../engine/class/Window/Window.hpp"
+#include <ArcticWolf/AssetStore.hpp>
+#include <ArcticWolf/Window.hpp>
 
 class World;
 

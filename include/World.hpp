@@ -4,11 +4,11 @@
 #include <ctime>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "../../engine/lib/FastNoise/FastNoise.h"
-#include "../../engine/class/Window/Window.hpp"
-#include "../../engine/class/AssetStore/AssetStore.hpp"
-#include "../../engine/class/Log/Log.hpp"
-#include "../BoatyMcBoatFace/BoatyMcBoatFace.hpp"
+#include <ArcticWolf/FastNoise.h>
+#include <ArcticWolf/Window.hpp>
+#include <ArcticWolf/AssetStore.hpp>
+#include <ArcticWolf/Log.hpp>
+#include "BoatyMcBoatFace.hpp"
 
 class World {
 

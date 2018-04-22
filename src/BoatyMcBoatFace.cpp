@@ -1,10 +1,10 @@
-#include "BoatyMcBoatFace.hpp"
-#include "../World/World.hpp"
+#include "../include/BoatyMcBoatFace.hpp"
+#include "../include/World.hpp"
 
 BoatyMcBoatFace::BoatyMcBoatFace (World* world) {
 
     m_world = world;
-    m_boatTexture.loadFromImage(*AssetStore::getImage("boatyMcBoatFace"));
+    m_boatTexture.loadFromImage(*aw::AssetStore::getImage("boatyMcBoatFace"));
     m_boatSprite = sf::Sprite(m_boatTexture);
     m_boatSprite.setOrigin(16.0, 24.0);
     m_boatSprite.setPosition(400.0, 300.0);
@@ -77,7 +77,7 @@ void BoatyMcBoatFace::subtractWeight (int weight) {
 
 void BoatyMcBoatFace::render () {
 
-    Window::draw(m_boatSprite);
+    aw::Window::draw(m_boatSprite);
 
 }
 

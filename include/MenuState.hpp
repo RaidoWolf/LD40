@@ -2,14 +2,14 @@
 #define H_CLASS_MENUSTATE
 
 #include <functional>
-#include "../../engine/class/GameState/GameState.hpp"
-#include "../../engine/class/GameStateManager/GameStateManager.hpp"
-#include "../../engine/class/LoopKeybinding/LoopKeybinding.hpp"
-#include "../../engine/class/AssetStore/AssetStore.hpp"
-#include "../../engine/class/Button/Button.hpp"
-#include "../../engine/class/Log/Log.hpp"
+#include <ArcticWolf/GameState.hpp>
+#include <ArcticWolf/GameStateManager.hpp>
+#include <ArcticWolf/LoopKeybinding.hpp>
+#include <ArcticWolf/AssetStore.hpp>
+#include <ArcticWolf/Button.hpp>
+#include <ArcticWolf/Log.hpp>
 
-class MenuState : public GameState {
+class MenuState : public aw::GameState {
 
 public:
 
@@ -45,7 +45,7 @@ private:
             this->startGame();
         }
     };
-    Button m_startButton {
+    aw::Button m_startButton {
         m_startButtonCallback,
         m_controller,
         "main",
@@ -54,7 +54,7 @@ private:
         12.0,
         sf::Color(255, 255, 255, 0),
         sf::Color(255, 255, 255, 255),
-        Button::Alignment::Center
+        aw::Button::Alignment::Center
     };
 
     sf::Texture m_titleTexture;

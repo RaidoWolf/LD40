@@ -4,13 +4,13 @@
 #include <functional>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "../../engine/class/GameState/GameState.hpp"
-#include "../../engine/class/GameStateManager/GameStateManager.hpp"
-#include "../../engine/class/Controller/Controller.hpp"
-#include "../../engine/class/LoopKeybinding/LoopKeybinding.hpp"
-#include "../World/World.hpp"
+#include <ArcticWolf/GameState.hpp>
+#include <ArcticWolf/GameStateManager.hpp>
+#include <ArcticWolf/Controller.hpp>
+#include <ArcticWolf/LoopKeybinding.hpp>
+#include "World.hpp"
 
-class PlayingState : public GameState {
+class PlayingState : public aw::GameState {
 
 public:
 

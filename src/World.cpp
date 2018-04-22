@@ -1,11 +1,11 @@
-#include "World.hpp"
+#include "../include/World.hpp"
 
 World::World () {
 
-    m_treesTexture.loadFromImage(*AssetStore::getImage("trees"));
-    m_stoneTexture.loadFromImage(*AssetStore::getImage("stone"));
-    m_iceTexture.loadFromImage(*AssetStore::getImage("ice"));
-    m_waterTexture.loadFromImage(*AssetStore::getImage("water"));
+    m_treesTexture.loadFromImage(*aw::AssetStore::getImage("trees"));
+    m_stoneTexture.loadFromImage(*aw::AssetStore::getImage("stone"));
+    m_iceTexture.loadFromImage(*aw::AssetStore::getImage("ice"));
+    m_waterTexture.loadFromImage(*aw::AssetStore::getImage("water"));
 
     m_treesSprite = sf::Sprite(m_treesTexture);
     m_stoneSprite = sf::Sprite(m_stoneTexture);
@@ -161,24 +161,24 @@ void World::render () {
 
                 case World::Block::Ice:
                     m_iceSprite.setPosition(32.0 * x - m_cameraX + 400, 32.0 * y - m_cameraY + 300);
-                    Window::draw(m_iceSprite);
+                    aw::Window::draw(m_iceSprite);
                     break;
 
                 case World::Block::Stone:
                     m_stoneSprite.setPosition(32.0 * x - m_cameraX + 400, 32.0 * y - m_cameraY + 300);
-                    Window::draw(m_stoneSprite);
+                    aw::Window::draw(m_stoneSprite);
                     break;
 
                 case World::Block::Trees:
                     m_treesSprite.setPosition(32.0 * x - m_cameraX + 400, 32.0 * y - m_cameraY + 300);
-                    Window::draw(m_treesSprite);
+                    aw::Window::draw(m_treesSprite);
                     break;
 
                 case World::Block::Water:
                 case World::Block::HomeWater:
                 default:
                     m_waterSprite.setPosition(32.0 * x - m_cameraX + 400, 32.0 * y - m_cameraY + 300);
-                    Window::draw(m_waterSprite);
+                    aw::Window::draw(m_waterSprite);
                     break;
 
             }

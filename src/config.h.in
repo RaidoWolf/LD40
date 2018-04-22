@@ -1,3 +1,0 @@
-// version info
-#define VERSION_MAJOR @LD40_VERSION_MAJOR@
-#define VERSION_MINOR @LD40_VERSION_MINOR@

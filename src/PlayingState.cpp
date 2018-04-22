@@ -1,32 +1,32 @@
-#include "PlayingState.hpp"
+#include "../include/PlayingState.hpp"
 
 PlayingState::PlayingState () {
 
     m_clearWindow = true;
     m_clearColor = sf::Color(0, 0, 0, 255);
 
-    m_controller.addLoopKeybinding(LoopKeybinding(
+    m_controller.addLoopKeybinding(aw::LoopKeybinding(
         [&](){
             m_world->getPlayer()->movePosition(0.0, -5.0);
         },
         sf::Keyboard::Key::W
     ));
 
-    m_controller.addLoopKeybinding(LoopKeybinding(
+    m_controller.addLoopKeybinding(aw::LoopKeybinding(
         [&](){
             m_world->getPlayer()->movePosition(-5.0, 0.0);
         },
         sf::Keyboard::Key::A
     ));
 
-    m_controller.addLoopKeybinding(LoopKeybinding(
+    m_controller.addLoopKeybinding(aw::LoopKeybinding(
         [&](){
             m_world->getPlayer()->movePosition(0.0, 5.0);
         },
         sf::Keyboard::Key::S
     ));
 
-    m_controller.addLoopKeybinding(LoopKeybinding(
+    m_controller.addLoopKeybinding(aw::LoopKeybinding(
         [&](){
             m_world->getPlayer()->movePosition(5.0, 0.0);
         },
@@ -37,13 +37,13 @@ PlayingState::PlayingState () {
 
 void PlayingState::onActivate () {
 
-    Log::verbose("Playing...");
+    aw::Log::verbose("playingstate", "Playing...");
 
     if (m_world) {
         m_world.reset();
     }
 
-    m_world = std::unique_ptr<World>(new World());
+    m_world = std::make_unique<World>();
 
 }
 

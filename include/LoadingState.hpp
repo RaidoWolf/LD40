@@ -1,14 +1,14 @@
 #ifndef H_CLASS_LOADINGSTATE
 #define H_CLASS_LOADINGSTATE
 
-#include "../../engine/class/GameState/GameState.hpp"
-#include "../../engine/class/GameStateManager/GameStateManager.hpp"
-#include "../../engine/class/LoopKeybinding/LoopKeybinding.hpp"
-#include "../../engine/class/AssetStore/AssetStore.hpp"
-#include "../../engine/class/ProgressBar/ProgressBar.hpp"
-#include "../../engine/class/Log/Log.hpp"
+#include <ArcticWolf/GameState.hpp>
+#include <ArcticWolf/GameStateManager.hpp>
+#include <ArcticWolf/LoopKeybinding.hpp>
+#include <ArcticWolf/AssetStore.hpp>
+#include <ArcticWolf/ProgressBar.hpp>
+#include <ArcticWolf/Log.hpp>
 
-class LoadingState : public GameState {
+class LoadingState : public aw::GameState {
 
 public:
 
@@ -37,7 +37,7 @@ public:
 
 private:
 
-    ProgressBar m_progressBar;
+    aw::ProgressBar m_progressBar;
     sf::Text m_loadingText;
 
 };
