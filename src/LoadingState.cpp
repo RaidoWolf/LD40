@@ -16,7 +16,7 @@ LoadingState::LoadingState () {
 
     auto mainFont = aw::AssetStore::makeFont("main");
     if (!mainFont->loadFromFile("./res/fonts/poiretone/PoiretOne-Regular.ttf")) {
-        aw::Log::warning("Could not load ./res/fonts/poiretone/PoiretOne-Regular.ttf.");
+        aw::Log::warning("loadingstate", "Could not load ./res/fonts/poiretone/PoiretOne-Regular.ttf.");
     }
 
     m_loadingText = sf::Text("Loading...", *mainFont);
@@ -39,7 +39,7 @@ LoadingState::LoadingState () {
 
 void LoadingState::onActivate () {
 
-    aw::Log::verbose("Loading...");
+    aw::Log::verbose("loadingstate", "Loading...");
 
     auto titleImage = aw::AssetStore::makeImage("title");
     if (!titleImage->loadFromFile("./res/images/speedfishing-title.png")) {

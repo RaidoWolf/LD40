@@ -40,14 +40,14 @@ public:
 
 private:
 
-    std::function<void()> m_startButtonCallback {
+    const std::function<void()> m_startButtonCallback {
         [this] () {
             this->startGame();
         }
     };
     aw::Button m_startButton {
         m_startButtonCallback,
-        m_controller,
+        &m_controller,
         "main",
         "Start",
         50.0,
